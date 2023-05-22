@@ -30,23 +30,6 @@ Public Class FormAccueil
         End If
     End Sub
 
-    Private Sub CmbJoueur1_DropDown(sender As Object, e As EventArgs) Handles CmbJoueur1.DropDown
-        ' Met à jour la liste des joueurs connus dans la ComboBox
-        MettreAJourListeJoueurs(CmbJoueur1)
-    End Sub
-
-    Private Sub CmbJoueur2_DropDown(sender As Object, e As EventArgs) Handles CmbJoueur2.DropDown
-        ' Met à jour la liste des joueurs connus dans la ComboBox
-        MettreAJourListeJoueurs(CmbJoueur2)
-    End Sub
-
-    Private Sub MettreAJourListeJoueurs(comboBox As ComboBox)
-        comboBox.Items.Clear()
-        For Each joueur In Joueurs
-            comboBox.Items.Add(joueur.Nom)
-        Next
-    End Sub
-
     Private Sub BtnQuit_Click(sender As Object, e As EventArgs) Handles BtnQuit.Click
         ' Affiche une boîte de dialogue de confirmation avant de quitter l'application
         Dim confirmation As DialogResult = MessageBox.Show("Voulez-vous vraiment quitter l'application ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
