@@ -1,114 +1,166 @@
 ﻿Imports System.IO
 
-Module ModuleJoueurs
-    Public Class Joueur
-        Public Nom As String
-        Public Score As Integer
-        Public MeilleurTemps As Integer
-        Public PartiesJoueesEnTantQueNomJoueurQuiPropose As Integer
-        Public PartiesJoueesEnTantQueNomJoueurQuiJoue As Integer
-        Public TempsTotal As Integer
-        Public EstPremierJoueur As Boolean ' Nouvel élément pour indiquer si le joueur est le premier joueur ou le joueur qui devine
-    End Class
+Module ModuleJoueur
+    Private Const NBR_MAX_JOUEUR As Integer = 2
+    Private joueursActuels(NBR_MAX_JOUEUR - 1) As Joueur
+    Private joueursHistorique As List(Of Joueur) = New List(Of Joueur)()
+    Private estPremiereFois As Boolean = True
+    Private cheminFichier As String = "../../HistoriqueJoueurs.txt"
 
-    Public Joueurs As New List(Of Joueur)()
+    Structure Joueur
+        Public nom As String
+        Public score As Integer
+        Public meilleurTemps As Integer
+        Public nbrPartiesPremierJoueur As Integer
+        Public nbrPartiesSecondJoueur As Integer
+        Public cumulTemps As Integer
+        Public estPremierJoueur As Boolean
+        Public ancienNom As String
+    End Structure
 
-    Public Sub AjouterJoueur(nom As String)
-        Dim nouveauJoueur As Joueur
-        nouveauJoueur.Nom = nom
-        nouveauJoueur.Score = 0
-        nouveauJoueur.MeilleurTemps = 0
-        nouveauJoueur.PartiesJoueesEnTantQueNomJoueurQuiPropose = 0
-        nouveauJoueur.PartiesJoueesEnTantQueNomJoueurQuiJoue = 0
-        nouveauJoueur.TempsTotal = 0
-        nouveauJoueur.EstPremierJoueur = False
+    Public Sub EnregistrerJoueur(ByRef cmbJoueur1 As Object, ByRef cmbJoueur2 As Object)
+        ResetJoueursActuels()
+        joueursActuels(0).nom = cmbJoueur1.Text
+        joueursActuels(0).estPremierJoueur = True
 
-        Joueurs.Add(nouveauJoueur)
-    End Sub
+        joueursActuels(1).nom = cmbJoueur2.Text
+        joueursActuels(1).estPremierJoueur = False
 
-    Public Sub AjouterJoueurSiNecessaire(nom As String)
-        ChargerJoueursDepuisFichier("nom_du_fichier.txt")
+        AjouterJoueursDansHistorique()
 
-        Dim joueurExistant = Joueurs.FirstOrDefault(Function(j) j.Nom = nom)
-
-        If joueurExistant.Equals(Nothing) Then
-            AjouterJoueur(nom)
-        End If
-    End Sub
-
-
-    Public Sub MettreAJourStatistiquesJoueur(nom As String, score As Integer, temps As Integer, estPremierJoueur As Boolean)
-        Dim joueur = Joueurs.FirstOrDefault(Function(j) j.Nom = nom)
-
-        If Not joueur.Equals(Nothing) Then
-            joueur.Score += score
-            joueur.TempsTotal += temps
-
-            If score > joueur.Score Then
-                joueur.Score = score
-            End If
-
-            If temps < joueur.MeilleurTemps OrElse joueur.MeilleurTemps = 0 Then
-                joueur.MeilleurTemps = temps
-            End If
-
-            If estPremierJoueur Then
-                joueur.PartiesJoueesEnTantQueNomJoueurQuiPropose += 1
-                joueur.EstPremierJoueur = True ' Le joueur est le premier joueur
+        For Each joueur In joueursActuels
+            joueur.score = 0
+            joueur.meilleurTemps = 0
+            joueur.cumulTemps = 0
+            joueur.ancienNom = ""
+            If joueur.estPremierJoueur Then
+                joueur.nbrPartiesPremierJoueur += 1
             Else
-                joueur.PartiesJoueesEnTantQueNomJoueurQuiJoue += 1
-                joueur.EstPremierJoueur = False ' Le joueur n'est pas le premier joueur
+                joueur.nbrPartiesSecondJoueur += 1
             End If
-        End If
+        Next
+
+        ChargerNomsJoueurs(cmbJoueur1, cmbJoueur2)
     End Sub
 
-    Public Sub TrierJoueursParNom()
-        Joueurs.Sort(Function(j1, j2) j1.Nom.CompareTo(j2.Nom))
+    Public Sub InverserNomsJoueurs(ByRef cmbJoueur1 As Object, ByRef cmbJoueur2 As Object)
+        cmbJoueur1.Text = joueursActuels(1).nom
+        cmbJoueur2.Text = joueursActuels(0).nom
     End Sub
 
-    Public Sub TrierJoueursParScore()
-        Joueurs.Sort(Function(j1, j2) j2.Score.CompareTo(j1.Score))
-    End Sub
-
-    Public Sub TrierJoueursParMeilleurTemps()
-        Joueurs.Sort(Function(j1, j2) j1.MeilleurTemps.CompareTo(j2.MeilleurTemps))
-    End Sub
-
-    Public Function RechercherJoueurParNom(nom As String) As Joueur
-        Return Joueurs.FirstOrDefault(Function(j) j.Nom = nom)
+    Public Function GetAncienNomTemp() As String
+        Return joueursActuels(0).ancienNom
     End Function
 
-    Public Sub SauvegarderJoueursDansFichier(nomFichier As String)
-        Using writer As New StreamWriter(nomFichier)
-            For Each joueur In Joueurs
-                writer.WriteLine(joueur.Nom)
-                writer.WriteLine(joueur.Score)
-                writer.WriteLine(joueur.MeilleurTemps)
-                writer.WriteLine(joueur.PartiesJoueesEnTantQueNomJoueurQuiPropose)
-                writer.WriteLine(joueur.PartiesJoueesEnTantQueNomJoueurQuiJoue)
-                writer.WriteLine(joueur.TempsTotal)
-                writer.WriteLine(joueur.EstPremierJoueur)
-            Next
-        End Using
+    Public Sub SetAncienNomTemp(ancien As String)
+        joueursActuels(0).ancienNom = ancien
     End Sub
-    Public Sub ChargerJoueursDepuisFichier(nomFichier As String)
-        Joueurs.Clear()
 
-        If File.Exists(nomFichier) Then
-            Using reader As New StreamReader(nomFichier)
-                While Not reader.EndOfStream
-                    Dim joueur As Joueur
-                    joueur.Nom = reader.ReadLine()
-                    joueur.Score = Integer.Parse(reader.ReadLine())
-                    joueur.MeilleurTemps = Integer.Parse(reader.ReadLine())
-                    joueur.PartiesJoueesEnTantQueNomJoueurQuiPropose = Integer.Parse(reader.ReadLine())
-                    joueur.PartiesJoueesEnTantQueNomJoueurQuiJoue = Integer.Parse(reader.ReadLine())
-                    joueur.TempsTotal = Integer.Parse(reader.ReadLine())
-                    joueur.EstPremierJoueur = Boolean.Parse(reader.ReadLine())
+    Public Sub FinDePartieSwitchJoueur(ByRef cmbJoueur1 As Object, ByRef cmbJoueur2 As Object)
+        Dim tempNom As String = joueursActuels(0).nom
+        joueursActuels(0).nom = joueursActuels(1).nom
+        joueursActuels(1).nom = tempNom
+        cmbJoueur1.Text = joueursActuels(0).nom
+        cmbJoueur2.Text = joueursActuels(1).nom
+    End Sub
 
-                    Joueurs.Add(joueur)
-                End While
-            End Using
+
+    Public Sub ResetJoueursActuels()
+        Array.Clear(joueursActuels, 0, joueursActuels.Length)
+    End Sub
+
+    Public Sub AjouterJoueursDansHistorique()
+        For Each joueur In joueursActuels
+            If Not EstContenuDansHistorique(joueur.nom) Then
+                If Not estPremiereFois Then
+                    joueursHistorique.Add(joueur)
+                Else
+                    joueursHistorique.AddRange(joueursActuels)
+                    estPremiereFois = False
+                End If
+            End If
+        Next
+    End Sub
+
+    Public Sub AjouterStats(joueur As Joueur, temps As Integer)
+        For Each joueurActuel In joueursActuels
+            If joueurActuel.estPremierJoueur = joueur.estPremierJoueur Then
+                joueurActuel.score += 1
+
+                If temps < joueurActuel.meilleurTemps Or joueurActuel.meilleurTemps = 0 Then
+                    joueurActuel.meilleurTemps = temps
+                End If
+
+                joueurActuel.cumulTemps += temps
+                Exit For
+            End If
+        Next
+    End Sub
+
+
+    Public Function EstContenuDansHistorique(nom As String) As Boolean
+        For Each joueur In joueursHistorique
+            If joueur.nom = nom Then
+                Return True
+            End If
+        Next
+        Return False
+    End Function
+
+    Public Sub ChargerNomsJoueurs(ByRef cmbJoueur1 As Object, ByRef cmbJoueur2 As Object)
+        cmbJoueur1.Items.Clear()
+        cmbJoueur2.Items.Clear()
+
+        For Each joueur In joueursHistorique
+            cmbJoueur1.Items.Add(joueur.nom)
+            cmbJoueur2.Items.Add(joueur.nom)
+        Next
+    End Sub
+
+
+
+    Public Sub SauvegarderHistorique()
+        Dim fichier As StreamWriter = File.CreateText(cheminFichier)
+        For Each joueur In joueursHistorique
+            fichier.WriteLine(joueur.nom & ";" & joueur.score & ";" & joueur.meilleurTemps & ";" & joueur.nbrPartiesPremierJoueur & ";" & joueur.nbrPartiesSecondJoueur & ";" & joueur.cumulTemps)
+        Next
+        fichier.Close()
+    End Sub
+
+    Public Sub ChargerHistorique()
+        If File.Exists(cheminFichier) Then
+            Dim fichier As StreamReader = File.OpenText(cheminFichier)
+            While Not fichier.EndOfStream
+                Dim ligne As String = fichier.ReadLine()
+                Dim donnees() As String = ligne.Split(";")
+                Dim joueur As Joueur
+                joueur.nom = donnees(0)
+                joueur.score = Integer.Parse(donnees(1))
+                joueur.meilleurTemps = Integer.Parse(donnees(2))
+                joueur.nbrPartiesPremierJoueur = Integer.Parse(donnees(3))
+                joueur.nbrPartiesSecondJoueur = Integer.Parse(donnees(4))
+                joueur.cumulTemps = Integer.Parse(donnees(5))
+                joueur.estPremierJoueur = False
+                joueur.ancienNom = ""
+                joueursHistorique.Add(joueur)
+            End While
+            fichier.Close()
         End If
     End Sub
+
+    Public Sub SupprimerHistorique()
+        joueursHistorique.Clear()
+        If File.Exists(cheminFichier) Then
+            File.Delete(cheminFichier)
+        End If
+    End Sub
+
+    Public Function getPremierJoueur() As Joueur
+        Return joueursActuels(0)
+    End Function
+
+    Public Function getDeuxiemeJoueur() As Joueur
+        Return joueursActuels(1)
+    End Function
+
 End Module

@@ -1,27 +1,23 @@
 ﻿Imports System.Windows.Forms
 
 Public Class FormAccueil
+    Private Sub FormAccueil_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        ' Charger les joueurs depuis l'historique
+        ChargerHistorique()
+
+        ' Mettre à jour la liste des joueurs dans les ComboBox
+        ChargerNomsJoueurs(CmbJoueur1, CmbJoueur2)
+    End Sub
+
     Private Sub BtnStartGame_Click(sender As Object, e As EventArgs) Handles BtnStartGame.Click
         ' Vérifier si les deux joueurs ont saisi un nom valide
         If CmbJoueur1.Text <> "" AndAlso CmbJoueur2.Text <> "" AndAlso CmbJoueur1.Text <> CmbJoueur2.Text Then
-            ' Les deux joueurs ont saisi un nom différent, tu peux lancer la partie ici
-            Dim nomJoueurQuiPropose As String = CmbJoueur1.Text
-            Dim nomJoueurQuiJoue As String = CmbJoueur2.Text
-
-            ' Vérifier si les joueurs existent déjà dans la liste des joueurs, sinon les ajouter
-            AjouterJoueurSiNecessaire(nomJoueurQuiPropose)
-            AjouterJoueurSiNecessaire(nomJoueurQuiJoue)
-
-            ' Récupérer les joueurs depuis la liste des joueurs
-            Dim joueurQuiPropose As Joueur = RechercherJoueurParNom(nomJoueurQuiPropose)
-            Dim joueurQuiJoue As Joueur = RechercherJoueurParNom(nomJoueurQuiJoue)
-
-            ' Passer les joueurs à la prochaine fenêtre (FormCommencementPartie)
-            Dim formCommencementPartie As New FormCommencementPartie()
-            formCommencementPartie.JoueurQuiPropose = joueurQuiPropose
-            formCommencementPartie.JoueurQuiJoue = joueurQuiJoue
-
-            formCommencementPartie.Show()
+            ' Enregistrer les joueurs dans l'historique
+            EnregistrerJoueur(CmbJoueur1, CmbJoueur2)
+            CmbJoueur1.Text = ""
+            CmbJoueur2.Text = ""
+            InverserNomsJoueurs(CmbJoueur1, CmbJoueur2)
+            FormCommencementPartie.Show()
             Me.Hide() ' Cache le formulaire FormAccueil au lieu de le fermer
 
         Else
@@ -35,18 +31,20 @@ Public Class FormAccueil
         Dim confirmation As DialogResult = MessageBox.Show("Voulez-vous vraiment quitter l'application ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
 
         If confirmation = DialogResult.Yes Then
-            ' Sauvegarde les joueurs dans le fichier avant de quitter
-            SauvegarderJoueursDansFichier("joueurs.txt")
+            ' Sauvegarde l'historique des joueurs dans le fichier avant de quitter
+            SauvegarderHistorique()
 
             ' Ferme l'application
             Application.Exit()
         End If
     End Sub
+
     Private Sub BtnSeeScore_Click(sender As Object, e As EventArgs) Handles BtnSeeScore.Click
         ' Affiche le formulaire du tableau des scores
         Dim formTableauScores As New FormTableauScores()
         formTableauScores.ShowDialog()
     End Sub
+
     Private Sub BtnOption_Click(sender As Object, e As EventArgs) Handles BtnOption.Click
         Dim formOption As New FormOption()
         formOption.ShowDialog()

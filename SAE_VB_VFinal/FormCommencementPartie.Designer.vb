@@ -52,6 +52,7 @@ Partial Class FormCommencementPartie
         'TxtCaractere1
         '
         Me.TxtCaractere1.Location = New System.Drawing.Point(36, 109)
+        Me.TxtCaractere1.MaxLength = 1
         Me.TxtCaractere1.Name = "TxtCaractere1"
         Me.TxtCaractere1.Size = New System.Drawing.Size(100, 20)
         Me.TxtCaractere1.TabIndex = 2
@@ -59,6 +60,7 @@ Partial Class FormCommencementPartie
         'TxtCaractere2
         '
         Me.TxtCaractere2.Location = New System.Drawing.Point(210, 109)
+        Me.TxtCaractere2.MaxLength = 1
         Me.TxtCaractere2.Name = "TxtCaractere2"
         Me.TxtCaractere2.Size = New System.Drawing.Size(100, 20)
         Me.TxtCaractere2.TabIndex = 3
@@ -66,6 +68,7 @@ Partial Class FormCommencementPartie
         'TxtCaractere3
         '
         Me.TxtCaractere3.Location = New System.Drawing.Point(373, 109)
+        Me.TxtCaractere3.MaxLength = 1
         Me.TxtCaractere3.Name = "TxtCaractere3"
         Me.TxtCaractere3.Size = New System.Drawing.Size(100, 20)
         Me.TxtCaractere3.TabIndex = 4
@@ -73,6 +76,7 @@ Partial Class FormCommencementPartie
         'TxtCaractere4
         '
         Me.TxtCaractere4.Location = New System.Drawing.Point(516, 109)
+        Me.TxtCaractere4.MaxLength = 1
         Me.TxtCaractere4.Name = "TxtCaractere4"
         Me.TxtCaractere4.Size = New System.Drawing.Size(100, 20)
         Me.TxtCaractere4.TabIndex = 5
@@ -80,6 +84,7 @@ Partial Class FormCommencementPartie
         'TxtCaractere5
         '
         Me.TxtCaractere5.Location = New System.Drawing.Point(656, 109)
+        Me.TxtCaractere5.MaxLength = 1
         Me.TxtCaractere5.Name = "TxtCaractere5"
         Me.TxtCaractere5.Size = New System.Drawing.Size(100, 20)
         Me.TxtCaractere5.TabIndex = 6

@@ -4,16 +4,8 @@ Imports System.Windows.Forms
 Public Class FormJoueurQuiDevine
     Private combinaison As String ' Variable pour stocker la combinaison à deviner
     Private remainingTime As TimeSpan ' Variable pour stocker le temps restant
-    Private joueurQuiPropose As Object
-    Private joueurQuiJoue As Object
     Private colors As Color()
-
-    Public Sub New(joueurQuiPropose As Object, joueurQuiJoue As Object, combinaison As String)
-        InitializeComponent()
-        Me.joueurQuiPropose = DirectCast(joueurQuiPropose, ModuleJoueurs.Joueur)
-        Me.joueurQuiJoue = DirectCast(joueurQuiJoue, ModuleJoueurs.Joueur)
-        Me.combinaison = combinaison
-    End Sub
+    Private tempsRestant As Integer
 
     Private Sub FormJoueurQuiDevine_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         InitializeComponents()
@@ -31,23 +23,17 @@ Public Class FormJoueurQuiDevine
         Timer1.Start()
     End Sub
 
-
-
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
         remainingTime = remainingTime.Subtract(TimeSpan.FromSeconds(1))
-
+        tempsRestant = remainingTime.Minutes
         If remainingTime.TotalSeconds <= 0 Then
             Timer1.Stop()
             MessageBox.Show("Désolé, le temps est écoulé.", "Défaite", MessageBoxButtons.OK, MessageBoxIcon.Information)
-            joueurQuiPropose.score += 1
-            EndGame()
+            EndGame(False)
         Else
             LblRemainingTime.Text = remainingTime.ToString("m\:ss")
         End If
     End Sub
-
-
-
 
     Private Function GetReponse(proposition As String) As String
         Dim reponse As String = ""
@@ -74,8 +60,7 @@ Public Class FormJoueurQuiDevine
 
         If remainingAttempts = 0 Then
             MessageBox.Show("Désolé, vous avez épuisé toutes vos tentatives.", "Défaite", MessageBoxButtons.OK, MessageBoxIcon.Information)
-            joueurQuiPropose.score += 1
-            EndGame()
+            EndGame(False)
         Else
             LblRemainingAttempts.Text = remainingAttempts.ToString()
         End If
@@ -114,8 +99,7 @@ Public Class FormJoueurQuiDevine
             Dim proposition As String = TxtChoix1.Text & TxtChoix2.Text & TxtChoix3.Text & TxtChoix4.Text & TxtChoix5.Text
             If proposition = combinaison Then
                 MessageBox.Show("Félicitations ! Vous avez deviné la combinaison.", "Victoire", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                joueurQuiJoue.score += 1
-                EndGame()
+                EndGame(True)
             Else
                 lstHistorique.Items.Add(proposition)
                 Dim reponse As String = GetReponse(proposition)
@@ -129,8 +113,7 @@ Public Class FormJoueurQuiDevine
 
                 If Integer.Parse(LblRemainingAttempts.Text) = 0 Then
                     MessageBox.Show("Désolé, vous avez épuisé toutes vos tentatives. La combinaison était : " & combinaison, "Défaite", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                    joueurQuiPropose.score += 1
-                    EndGame()
+                    EndGame(False)
                 End If
             End If
         Else
@@ -152,6 +135,7 @@ Public Class FormJoueurQuiDevine
                 Return Color.Red ' LblAbsent
         End Select
     End Function
+
     Private Sub HighlightTextBox(textBox As TextBox, backColor As Color, durationMilliseconds As Integer)
         textBox.BackColor = backColor
         Task.Delay(durationMilliseconds).ContinueWith(Sub()
@@ -159,17 +143,19 @@ Public Class FormJoueurQuiDevine
                                                       End Sub)
     End Sub
 
-    Private Sub EndGame()
-        ' Échanger les rôles des joueurs
-        Dim joueurTemp As Object = joueurQuiPropose
-        joueurQuiPropose = joueurQuiJoue
-        joueurQuiJoue = joueurTemp
-
+    Private Sub EndGame(Joueur1APerdu As Boolean)
         ' Afficher le formulaire de partie terminée avec les nouveaux rôles des joueurs
-        Dim formPartieTerminee As New FormPartieTerminee()
-        formPartieTerminee.RemplirLabels(joueurQuiPropose.Nom, joueurQuiJoue.Nom)
-        formPartieTerminee.Show()
+        'Dim formPartieTerminee As New FormPartieTerminee()
+        'formPartieTerminee.RemplirLabels(joueurQuiPropose.nom, joueurQuiJoue.nom)
+        'formPartieTerminee.Show()
 
+        If Joueur1APerdu Then
+            ModuleJoueur.AjouterStats(getDeuxiemeJoueur, tempsRestant)
+        Else
+            ModuleJoueur.AjouterStats(getPremierJoueur, tempsRestant)
+        End If
+
+        SauvegarderHistorique()
         Me.Close() ' Fermer le formulaire actuel
     End Sub
 
