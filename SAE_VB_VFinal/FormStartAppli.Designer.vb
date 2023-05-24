@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class StartAppli
+Partial Class FormStartAppli
     Inherits System.Windows.Forms.Form
 
     'Form remplace la méthode Dispose pour nettoyer la liste des composants.
@@ -103,7 +103,7 @@ Partial Class StartAppli
         Me.BtnQuit.Text = "exit"
         Me.BtnQuit.UseVisualStyleBackColor = False
         '
-        'StartAppli
+        'FormStartAppli
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -115,8 +115,9 @@ Partial Class StartAppli
         Me.Controls.Add(Me.BtnStatJoueur)
         Me.Controls.Add(Me.BtnSeeScore)
         Me.Controls.Add(Me.BtnOption)
-        Me.Name = "StartAppli"
-        Me.Text = "StartAppli"
+        Me.Name = "FormStartAppli"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
+        Me.Text = "MasterMind"
         Me.ResumeLayout(False)
 
     End Sub

@@ -88,7 +88,7 @@ Public Class FormOption
 
         If confirmation = DialogResult.Yes Then
             Me.Close()
-            StartAppli.Show()
+            FormStartAppli.Show()
         End If
     End Sub
 

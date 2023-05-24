@@ -224,7 +224,8 @@ Partial Class FormJoueurQuiDevine
         Me.Controls.Add(Me.LblRemainingAttempts)
         Me.Controls.Add(Me.LblCaractereJouable)
         Me.Name = "FormJoueurQuiDevine"
-        Me.Text = "FormJoueurQuiDevine"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
+        Me.Text = "Game"
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

@@ -16,7 +16,6 @@ Public Class FormAccueil
             CmbJoueur1.Text = ""
             CmbJoueur2.Text = ""
             SauvegarderHistoriqueDansFichier()
-            InverserNomsJoueurs()
             ' Cache le formulaire FormAccueil au lieu de le fermer
             Me.Hide()
             FormCommencementPartie.Show()
@@ -34,7 +33,7 @@ Public Class FormAccueil
 
         If confirmation = DialogResult.Yes Then
             Me.Close()
-            StartAppli.Show()
+            FormStartAppli.Show()
         End If
     End Sub
 End Class

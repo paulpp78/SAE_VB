@@ -22,7 +22,7 @@ Partial Class FormTableauScores
     'Ne la modifiez pas à l'aide de l'éditeur de code.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.DgvTabScore = New System.Windows.Forms.DataGridView()
         Me.BtnQuit = New System.Windows.Forms.Button()
         CType(Me.DgvTabScore, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -31,14 +31,14 @@ Partial Class FormTableauScores
         'DgvTabScore
         '
         Me.DgvTabScore.BackgroundColor = System.Drawing.Color.Black
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle3.BackColor = System.Drawing.Color.Black
-        DataGridViewCellStyle3.Font = New System.Drawing.Font("Arial", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle3.ForeColor = System.Drawing.Color.Gold
-        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Blue
-        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Red
-        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DgvTabScore.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle1.BackColor = System.Drawing.Color.Black
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Arial", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle1.ForeColor = System.Drawing.Color.Gold
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Blue
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Red
+        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DgvTabScore.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
         Me.DgvTabScore.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DgvTabScore.EnableHeadersVisualStyles = False
         Me.DgvTabScore.GridColor = System.Drawing.Color.Red
@@ -66,7 +66,8 @@ Partial Class FormTableauScores
         Me.Controls.Add(Me.BtnQuit)
         Me.Controls.Add(Me.DgvTabScore)
         Me.Name = "FormTableauScores"
-        Me.Text = "FormTableauScores"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
+        Me.Text = "Score"
         CType(Me.DgvTabScore, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 

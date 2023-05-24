@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class Choix_Partie
+Partial Class FormChoix_Partie
     Inherits System.Windows.Forms.Form
 
     'Form remplace la méthode Dispose pour nettoyer la liste des composants.
@@ -135,7 +135,7 @@ Partial Class Choix_Partie
         Me.LblFree.TabIndex = 10
         Me.LblFree.Text = "Label4"
         '
-        'Choix_Partie
+        'FormChoix_Partie
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -151,8 +151,9 @@ Partial Class Choix_Partie
         Me.Controls.Add(Me.BtnHard)
         Me.Controls.Add(Me.BtnModerate)
         Me.Controls.Add(Me.BtnEasy)
-        Me.Name = "Choix_Partie"
-        Me.Text = "Choix_Partie"
+        Me.Name = "FormChoix_Partie"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
+        Me.Text = "Choice mode"
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

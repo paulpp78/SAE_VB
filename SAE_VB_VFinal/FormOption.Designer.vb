@@ -266,7 +266,8 @@ Partial Class FormOption
         Me.Controls.Add(Me.LblCaracteres)
         Me.Controls.Add(Me.LblCouleursResultat)
         Me.Name = "FormOption"
-        Me.Text = "FormOption"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
+        Me.Text = "Option"
         CType(Me.NumUpDownNbProposition, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TrckBarTemps, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)

@@ -1,6 +1,6 @@
 ﻿Imports System.Windows.Forms
 
-Public Class StartAppli
+Public Class FormStartAppli
 
     Private Sub StartAppli_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ChargerHistorique()
@@ -29,7 +29,7 @@ Public Class StartAppli
 
         'Dim formOption As New FormOption()
         'FormOption.ShowDialog()
-        Choix_Partie.Show()
+        FormChoix_Partie.Show()
         Me.Hide()
     End Sub
 

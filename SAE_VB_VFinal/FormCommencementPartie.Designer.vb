@@ -149,7 +149,8 @@ Partial Class FormCommencementPartie
         Me.Controls.Add(Me.BtnNext)
         Me.Controls.Add(Me.LblCaractereJouable)
         Me.Name = "FormCommencementPartie"
-        Me.Text = "Form1"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
+        Me.Text = "Enter Character"
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

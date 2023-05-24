@@ -82,7 +82,8 @@ Partial Class FormAccueil
         Me.Controls.Add(Me.CmbJoueur2)
         Me.Controls.Add(Me.CmbJoueur1)
         Me.Name = "FormAccueil"
-        Me.Text = "Form1"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
+        Me.Text = "Enter Name"
         Me.ResumeLayout(False)
 
     End Sub

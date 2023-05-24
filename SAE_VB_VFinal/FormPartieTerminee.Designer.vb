@@ -86,7 +86,8 @@ Partial Class FormPartieTerminee
         Me.Controls.Add(Me.BtnNouvellePartie)
         Me.Controls.Add(Me.LblResultat)
         Me.Name = "FormPartieTerminee"
-        Me.Text = "FormPartieTerminee"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
+        Me.Text = "End"
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

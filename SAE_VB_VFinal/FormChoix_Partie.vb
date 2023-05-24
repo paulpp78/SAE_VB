@@ -1,6 +1,6 @@
 ﻿Imports System.Windows.Forms
 
-Public Class Choix_Partie
+Public Class FormChoix_Partie
 
     Private Sub Choix_Partie_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ' Code à exécuter lors du chargement du formulaire
@@ -39,7 +39,7 @@ Public Class Choix_Partie
     End Sub
 
     Private Sub BtnBack_Click(sender As Object, e As EventArgs) Handles BtnBack.Click
-        StartAppli.Show()
+        FormStartAppli.Show()
         Me.Hide()
     End Sub
 

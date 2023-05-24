@@ -71,10 +71,10 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Choix_Partie.Designer.vb">
-      <DependentUpon>Choix_Partie.vb</DependentUpon>
+    <Compile Include="FormChoix_Partie.Designer.vb">
+      <DependentUpon>FormChoix_Partie.vb</DependentUpon>
     </Compile>
-    <Compile Include="Choix_Partie.vb">
+    <Compile Include="FormChoix_Partie.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormCommencementPartie.Designer.vb">
@@ -138,16 +138,16 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="ModuleOptionsDeJeu.vb" />
-    <Compile Include="StartAppli.Designer.vb">
-      <DependentUpon>StartAppli.vb</DependentUpon>
+    <Compile Include="FormStartAppli.Designer.vb">
+      <DependentUpon>FormStartAppli.vb</DependentUpon>
     </Compile>
-    <Compile Include="StartAppli.vb">
+    <Compile Include="FormStartAppli.vb">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Choix_Partie.resx">
-      <DependentUpon>Choix_Partie.vb</DependentUpon>
+    <EmbeddedResource Include="FormChoix_Partie.resx">
+      <DependentUpon>FormChoix_Partie.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormAccueil.resx">
       <DependentUpon>FormAccueil.vb</DependentUpon>
@@ -176,8 +176,8 @@
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="StartAppli.resx">
-      <DependentUpon>StartAppli.vb</DependentUpon>
+    <EmbeddedResource Include="FormStartAppli.resx">
+      <DependentUpon>FormStartAppli.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

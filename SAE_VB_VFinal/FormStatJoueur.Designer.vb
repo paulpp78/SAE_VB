@@ -277,6 +277,8 @@ Partial Class FormStatJoueur
         Me.Controls.Add(Me.BtnTriNom)
         Me.Controls.Add(Me.LstJoueurs)
         Me.Name = "FormStatJoueur"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
+        Me.Text = "Stat"
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

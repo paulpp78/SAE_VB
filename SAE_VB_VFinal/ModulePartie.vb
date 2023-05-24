@@ -12,7 +12,7 @@ Module ModulePartie
     End Sub
 
     Sub Main()
-        Dim formAccueil As New StartAppli()
+        Dim formAccueil As New FormStartAppli()
         Application.Run(formAccueil)
     End Sub
 End Module
