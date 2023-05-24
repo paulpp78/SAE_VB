@@ -47,9 +47,6 @@ Public Class FormStartAppli
         Dim confirmation As DialogResult = MessageBox.Show("Voulez-vous vraiment quitter l'application ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
 
         If confirmation = DialogResult.Yes Then
-            ' Sauvegarde l'historique des joueurs dans le fichier avant de quitter
-            SauvegarderHistoriqueDansFichier()
-
             ' Ferme l'application
             Application.Exit()
         End If

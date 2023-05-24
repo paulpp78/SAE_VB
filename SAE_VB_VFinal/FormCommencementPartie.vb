@@ -6,8 +6,6 @@ Public Class FormCommencementPartie
     Private Sub BtnNext_Click(sender As Object, e As EventArgs) Handles BtnNext.Click
         ' Vérifie si tous les caractères ont été saisis
         If TxtCaractere1.TextLength = 1 AndAlso TxtCaractere2.TextLength = 1 AndAlso TxtCaractere3.TextLength = 1 AndAlso TxtCaractere4.TextLength = 1 AndAlso TxtCaractere5.TextLength = 1 Then
-            SauvegarderHistoriqueDansFichier()
-
             ' Vérifie si les caractères saisis sont valides
             Dim caracteresAutorises As String = ModuleOptionsDeJeu.GetCaracteresUtilisables()
             SetCombinaison(TxtCaractere1.Text & TxtCaractere2.Text & TxtCaractere3.Text & TxtCaractere4.Text & TxtCaractere5.Text)

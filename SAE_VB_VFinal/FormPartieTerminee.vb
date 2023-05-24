@@ -20,7 +20,7 @@ Public Class FormPartieTerminee
 
     ' Gestionnaire d'événement pour le clic sur le bouton "Continuer sans rejouer"
     Private Sub BtnContinuerSansRejouer_Click(sender As Object, e As EventArgs) Handles BtnContinuerSansRejouer.Click
-        FormChoix_Partie.Show()
+        FormStartAppli.Show()
         Me.Hide() ' Fermer le formulaire actuel
     End Sub
 

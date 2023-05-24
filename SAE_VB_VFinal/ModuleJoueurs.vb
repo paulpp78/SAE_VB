@@ -2,10 +2,9 @@
 
 Module ModuleJoueur
     Private Const NBR_MAX_JOUEUR As Integer = 2
-    Private joueursActuels(NBR_MAX_JOUEUR - 1) As Joueur
+    Public joueursActuels(NBR_MAX_JOUEUR - 1) As Joueur
     Public joueursHistorique As New List(Of Joueur)()
     Public JoueurQuiGagne As String
-    'Private estPremiereFois As Boolean = True
     Private cheminFichier As String = "../../HistoriqueJoueurs.txt"
 
     Structure Joueur
@@ -19,7 +18,6 @@ Module ModuleJoueur
         Public ancienNom As String
     End Structure
 
-
     Public Function GetJoueurQuiGagne() As String
         Return JoueurQuiGagne
     End Function
@@ -28,10 +26,8 @@ Module ModuleJoueur
         JoueurQuiGagne = Quigagne
     End Sub
 
-
-
-
     Public Sub EnregistrerJoueur()
+        joueursHistorique.Clear() ' Effacer les joueurs existants dans l'historique
         ResetJoueursActuels()
         joueursActuels(0).nom = FormAccueil.CmbJoueur1.Text
         joueursActuels(0).estPremierJoueur = True
@@ -52,31 +48,55 @@ Module ModuleJoueur
                 joueur.nbrPartiesSecondJoueur += 1
             End If
         Next
-
         ChargerNomsJoueurs()
     End Sub
 
-    Public Sub InverserNomsJoueurs()
-        FormAccueil.CmbJoueur1.Text = joueursActuels(1).nom
-        FormAccueil.CmbJoueur2.Text = joueursActuels(0).nom
+
+
+    Public Sub ChargerNomsJoueurs()
+        If Not File.Exists(cheminFichier) Then
+            File.Create(cheminFichier).Close()
+        End If
+
+        Dim nbJoueurHistorique As Integer
+        If FileLen(cheminFichier) > 0 Then
+            Dim num As Integer = FreeFile()
+            FileOpen(num, cheminFichier, OpenMode.Input)
+            nbJoueurHistorique = LineInput(num)
+
+            For i As Integer = 0 To nbJoueurHistorique - 1
+                Dim joueur As Joueur
+                joueur.nom = LineInput(num)
+                joueur.score = LineInput(num)
+                joueur.meilleurTemps = LineInput(num)
+                joueur.nbrPartiesPremierJoueur = LineInput(num)
+                joueur.nbrPartiesSecondJoueur = LineInput(num)
+                joueur.cumulTemps = LineInput(num)
+
+                ' Vérifier si le joueur existe déjà dans l'historique
+                ' Vérifier si le joueur existe déjà dans l'historique
+                Dim joueurExistant = joueursHistorique.FirstOrDefault(Function(j) j.nom = joueur.nom)
+                If joueurExistant.Equals(New Joueur()) Then
+                    ' Ajouter le joueur uniquement s'il n'existe pas déjà
+                    joueursHistorique.Add(joueur)
+                End If
+
+            Next
+            FileClose(num)
+        End If
     End Sub
 
-    Public Function GetAncienNomTemp() As String
-        Return joueursActuels(0).ancienNom
-    End Function
-
-    Public Sub SetAncienNomTemp(ancien As String)
-        joueursActuels(0).ancienNom = ancien
+    Public Sub MiseAJourJoueurDansHistorique(joueur As Joueur)
+        For Each joueurHistorique In joueursHistorique
+            If joueurHistorique.nom = joueur.nom Then
+                joueurHistorique.score = joueur.score
+                joueurHistorique.cumulTemps = joueur.cumulTemps
+                joueurHistorique.nbrPartiesPremierJoueur = joueur.nbrPartiesPremierJoueur
+                joueurHistorique.nbrPartiesSecondJoueur = joueur.nbrPartiesSecondJoueur
+                Exit For
+            End If
+        Next
     End Sub
-
-    Public Sub FinDePartieSwitchJoueur()
-        Dim tempNom As String = joueursActuels(0).nom
-        joueursActuels(0).nom = joueursActuels(1).nom
-        joueursActuels(1).nom = tempNom
-        FormAccueil.CmbJoueur1.Text = joueursActuels(0).nom
-        FormAccueil.CmbJoueur2.Text = joueursActuels(1).nom
-    End Sub
-
 
     Public Sub ResetJoueursActuels()
         Array.Clear(joueursActuels, 0, joueursActuels.Length)
@@ -90,68 +110,13 @@ Module ModuleJoueur
         Next
     End Sub
 
-
-    Public Sub ajouterStats(joueur As Joueur, temps As Integer)
-        If (joueur.estPremierJoueur) Then
-            joueursActuels(0).score += 1
-            joueursActuels(0).cumulTemps += temps
-            If joueursActuels(0).meilleurTemps = 0 Or joueursActuels(0).meilleurTemps > temps Then
-                joueursActuels(0).meilleurTemps = temps
-            End If
-            joueursActuels(1).cumulTemps += temps
-        Else
-            joueursActuels(1).score += 1
-            joueursActuels(1).cumulTemps += temps
-            If joueursActuels(1).meilleurTemps = 0 Or joueursActuels(1).meilleurTemps > temps Then
-                joueursActuels(1).meilleurTemps = temps
-            End If
-            joueursActuels(0).cumulTemps += temps
-        End If
-    End Sub
-
     Public Function EstContenuDansHistorique(nom As String) As Boolean
-        For Each joueur In joueursHistorique
-            If joueur.nom = nom Then
-                Return True
-            End If
-        Next
-        Return False
+        Return joueursHistorique.Any(Function(joueur) joueur.nom = nom)
     End Function
 
-    Public Sub ChargerNomsJoueurs()
-        If Not File.Exists(cheminFichier) Then
-            Dim fichier As StreamWriter = File.CreateText(cheminFichier)
-            fichier.Close()
-        End If
 
-        Dim nbJoueurHistorique As Integer
-        If FileLen(cheminFichier) > 0 Then
-            Dim num As Integer = FreeFile()
-            FileOpen(num, cheminFichier, OpenMode.Input)
-            nbJoueurHistorique = LineInput(num)
-            joueursHistorique.Clear()
-
-            For i As Integer = 0 To nbJoueurHistorique - 1
-                Dim joueur As Joueur
-                joueur.nom = LineInput(num)
-                joueur.score = LineInput(num)
-                joueur.meilleurTemps = LineInput(num)
-                joueur.nbrPartiesPremierJoueur = LineInput(num)
-                joueur.nbrPartiesSecondJoueur = LineInput(num)
-                joueur.cumulTemps = LineInput(num)
-
-                joueursHistorique.Add(joueur)
-            Next
-            FileClose(num)
-        End If
-    End Sub
 
     Public Sub SauvegarderHistoriqueDansFichier()
-        If Not File.Exists(cheminFichier) Then
-            Dim fichier As StreamWriter = File.CreateText(cheminFichier)
-            fichier.Close()
-        End If
-
         Using writer As New StreamWriter(cheminFichier)
             writer.WriteLine(joueursHistorique.Count)
             For Each joueur In joueursHistorique
@@ -208,12 +173,7 @@ Module ModuleJoueur
     End Function
 
     Public Function RechercherJoueurParNom(nom As String) As Joueur
-        For Each joueur In joueursHistorique
-            If joueur.nom = nom Then
-                Return joueur
-            End If
-        Next
-        Return Nothing
+        Return joueursHistorique.FirstOrDefault(Function(joueur) joueur.nom = nom)
     End Function
 
     Public Sub TrierJoueursParMeilleurTemps()
@@ -229,11 +189,12 @@ Module ModuleJoueur
     End Function
 
     Public Function GetNomsJoueursHistorique() As List(Of String)
-        Dim nomsJoueurs As New List(Of String)
-        For Each joueur In joueursHistorique
-            nomsJoueurs.Add(joueur.nom)
-        Next
-        Return nomsJoueurs
+        Return joueursHistorique.Select(Function(joueur) joueur.nom).ToList()
     End Function
+
+    Public Sub InverserNomsJoueurs()
+        FormAccueil.CmbJoueur1.Text = joueursActuels(1).nom
+        FormAccueil.CmbJoueur2.Text = joueursActuels(0).nom
+    End Sub
 
 End Module

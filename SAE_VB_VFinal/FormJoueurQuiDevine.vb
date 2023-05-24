@@ -146,17 +146,36 @@ Public Class FormJoueurQuiDevine
     End Sub
 
     Private Sub EndGame(Joueur1APerdu As Boolean)
+        Dim joueurGagnant As Joueur
+        Dim joueurPerdant As Joueur
+
         If Joueur1APerdu Then
-            ajouterStats(getDeuxiemeJoueur(), tempsRestant)
-            SetJoueurQuiGagne(getDeuxiemeJoueur().nom)
+            joueurGagnant = joueursActuels(1)
+            joueurPerdant = joueursActuels(0)
         Else
-            ajouterStats(getPremierJoueur(), tempsRestant)
-            SetJoueurQuiGagne(getPremierJoueur().nom)
+            joueurGagnant = joueursActuels(0)
+            joueurPerdant = joueursActuels(1)
         End If
+
+        joueurGagnant.score += 1
+        joueurGagnant.cumulTemps += tempsRestant
+
+        joueurGagnant.nbrPartiesPremierJoueur += If(joueurGagnant.estPremierJoueur, 1, 0)
+        joueurGagnant.nbrPartiesSecondJoueur += If(joueurGagnant.estPremierJoueur, 0, 1)
+        joueurPerdant.nbrPartiesPremierJoueur += If(joueurPerdant.estPremierJoueur, 1, 0)
+        joueurPerdant.nbrPartiesSecondJoueur += If(joueurPerdant.estPremierJoueur, 0, 1)
+
+        ' Mettre à jour les joueurs gagnant et perdant dans les joueurs historiques
+        MiseAJourJoueurDansHistorique(joueurGagnant)
+        MiseAJourJoueurDansHistorique(joueurPerdant)
+
+        SetJoueurQuiGagne(joueurGagnant.nom)
+
         SauvegarderHistoriqueDansFichier()
         FormPartieTerminee.Show()
         Me.Hide()
     End Sub
+
 
 
     Private Sub ResetGame()
