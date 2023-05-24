@@ -4,8 +4,8 @@ Module ModuleJoueur
     Private Const NBR_MAX_JOUEUR As Integer = 2
     Private joueursActuels(NBR_MAX_JOUEUR - 1) As Joueur
     Public joueursHistorique As New List(Of Joueur)()
-
-    Private estPremiereFois As Boolean = True
+    Public JoueurQuiGagne As String
+    'Private estPremiereFois As Boolean = True
     Private cheminFichier As String = "../../HistoriqueJoueurs.txt"
 
     Structure Joueur
@@ -18,6 +18,18 @@ Module ModuleJoueur
         Public estPremierJoueur As Boolean
         Public ancienNom As String
     End Structure
+
+
+    Public Function GetJoueurQuiGagne() As String
+        Return JoueurQuiGagne
+    End Function
+
+    Public Sub SetJoueurQuiGagne(Quigagne As String)
+        JoueurQuiGagne = Quigagne
+    End Sub
+
+
+
 
     Public Sub EnregistrerJoueur()
         ResetJoueursActuels()

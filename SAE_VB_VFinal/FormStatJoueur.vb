@@ -16,9 +16,6 @@ Public Class FormStatJoueur
         ' Effacer la liste actuelle
         LstJoueurs.Items.Clear()
 
-        ' Trier les joueurs par nom
-        TrierJoueursParNom()
-
         ' Ajouter les noms des joueurs à la ListBox
         For Each joueur As ModuleJoueur.Joueur In ModuleJoueur.joueursHistorique
             LstJoueurs.Items.Add(joueur.nom)

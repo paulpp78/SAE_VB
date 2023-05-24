@@ -35,117 +35,234 @@ Partial Class FormStatJoueur
         Me.TxtPartiesSecondJoueur = New System.Windows.Forms.TextBox()
         Me.TxtTempsTotal = New System.Windows.Forms.TextBox()
         Me.BtnQuit = New System.Windows.Forms.Button()
+        Me.LblNom = New System.Windows.Forms.Label()
+        Me.LblScore = New System.Windows.Forms.Label()
+        Me.LblMeilleurTemps = New System.Windows.Forms.Label()
+        Me.LblPartiesPremierJoueur = New System.Windows.Forms.Label()
+        Me.LblPartiesSecondJoueur = New System.Windows.Forms.Label()
+        Me.Label6 = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'LstJoueurs
         '
+        Me.LstJoueurs.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LstJoueurs.FormattingEnabled = True
-        Me.LstJoueurs.Location = New System.Drawing.Point(130, 52)
+        Me.LstJoueurs.ItemHeight = 16
+        Me.LstJoueurs.Location = New System.Drawing.Point(12, 54)
         Me.LstJoueurs.Name = "LstJoueurs"
-        Me.LstJoueurs.Size = New System.Drawing.Size(237, 95)
+        Me.LstJoueurs.Size = New System.Drawing.Size(343, 308)
         Me.LstJoueurs.TabIndex = 0
         '
         'BtnTriNom
         '
-        Me.BtnTriNom.Location = New System.Drawing.Point(130, 153)
+        Me.BtnTriNom.BackColor = System.Drawing.Color.Transparent
+        Me.BtnTriNom.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnTriNom.ForeColor = System.Drawing.SystemColors.ActiveCaption
+        Me.BtnTriNom.Location = New System.Drawing.Point(12, 377)
         Me.BtnTriNom.Name = "BtnTriNom"
-        Me.BtnTriNom.Size = New System.Drawing.Size(75, 23)
+        Me.BtnTriNom.Size = New System.Drawing.Size(112, 27)
         Me.BtnTriNom.TabIndex = 1
         Me.BtnTriNom.Text = "TriNom"
-        Me.BtnTriNom.UseVisualStyleBackColor = True
+        Me.BtnTriNom.UseVisualStyleBackColor = False
         '
         'BtnTriScore
         '
-        Me.BtnTriScore.Location = New System.Drawing.Point(211, 153)
+        Me.BtnTriScore.BackColor = System.Drawing.Color.Transparent
+        Me.BtnTriScore.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnTriScore.ForeColor = System.Drawing.SystemColors.ActiveCaption
+        Me.BtnTriScore.Location = New System.Drawing.Point(125, 377)
         Me.BtnTriScore.Name = "BtnTriScore"
-        Me.BtnTriScore.Size = New System.Drawing.Size(75, 23)
+        Me.BtnTriScore.Size = New System.Drawing.Size(112, 27)
         Me.BtnTriScore.TabIndex = 2
         Me.BtnTriScore.Text = "TriScore"
-        Me.BtnTriScore.UseVisualStyleBackColor = True
+        Me.BtnTriScore.UseVisualStyleBackColor = False
         '
         'BtnTriTemps
         '
-        Me.BtnTriTemps.Location = New System.Drawing.Point(292, 153)
+        Me.BtnTriTemps.BackColor = System.Drawing.Color.Transparent
+        Me.BtnTriTemps.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnTriTemps.ForeColor = System.Drawing.SystemColors.ActiveCaption
+        Me.BtnTriTemps.Location = New System.Drawing.Point(243, 377)
         Me.BtnTriTemps.Name = "BtnTriTemps"
-        Me.BtnTriTemps.Size = New System.Drawing.Size(75, 23)
+        Me.BtnTriTemps.Size = New System.Drawing.Size(112, 27)
         Me.BtnTriTemps.TabIndex = 3
         Me.BtnTriTemps.Text = "TriTemps"
-        Me.BtnTriTemps.UseVisualStyleBackColor = True
+        Me.BtnTriTemps.UseVisualStyleBackColor = False
         '
         'CbnRechercheJoueur
         '
         Me.CbnRechercheJoueur.FormattingEnabled = True
-        Me.CbnRechercheJoueur.Location = New System.Drawing.Point(130, 182)
+        Me.CbnRechercheJoueur.Location = New System.Drawing.Point(466, 126)
         Me.CbnRechercheJoueur.Name = "CbnRechercheJoueur"
         Me.CbnRechercheJoueur.Size = New System.Drawing.Size(237, 21)
         Me.CbnRechercheJoueur.TabIndex = 4
         '
         'BtnRechercherJoueur
         '
-        Me.BtnRechercherJoueur.Location = New System.Drawing.Point(211, 209)
+        Me.BtnRechercherJoueur.BackColor = System.Drawing.Color.Transparent
+        Me.BtnRechercherJoueur.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnRechercherJoueur.ForeColor = System.Drawing.SystemColors.ActiveCaption
+        Me.BtnRechercherJoueur.Location = New System.Drawing.Point(709, 118)
         Me.BtnRechercherJoueur.Name = "BtnRechercherJoueur"
-        Me.BtnRechercherJoueur.Size = New System.Drawing.Size(75, 23)
+        Me.BtnRechercherJoueur.Size = New System.Drawing.Size(101, 32)
         Me.BtnRechercherJoueur.TabIndex = 5
         Me.BtnRechercherJoueur.Text = "Rechercher"
-        Me.BtnRechercherJoueur.UseVisualStyleBackColor = True
+        Me.BtnRechercherJoueur.UseVisualStyleBackColor = False
         '
         'TxtNom
         '
-        Me.TxtNom.Location = New System.Drawing.Point(549, 96)
+        Me.TxtNom.BackColor = System.Drawing.Color.Red
+        Me.TxtNom.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtNom.ForeColor = System.Drawing.Color.Blue
+        Me.TxtNom.Location = New System.Drawing.Point(486, 183)
         Me.TxtNom.Name = "TxtNom"
-        Me.TxtNom.Size = New System.Drawing.Size(100, 20)
+        Me.TxtNom.Size = New System.Drawing.Size(100, 24)
         Me.TxtNom.TabIndex = 6
         '
         'TxtScore
         '
-        Me.TxtScore.Location = New System.Drawing.Point(556, 143)
+        Me.TxtScore.BackColor = System.Drawing.Color.Blue
+        Me.TxtScore.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtScore.ForeColor = System.Drawing.Color.Red
+        Me.TxtScore.Location = New System.Drawing.Point(486, 213)
         Me.TxtScore.Name = "TxtScore"
-        Me.TxtScore.Size = New System.Drawing.Size(100, 20)
+        Me.TxtScore.Size = New System.Drawing.Size(100, 24)
         Me.TxtScore.TabIndex = 7
         '
         'TxtMeilleurTemps
         '
-        Me.TxtMeilleurTemps.Location = New System.Drawing.Point(567, 199)
+        Me.TxtMeilleurTemps.BackColor = System.Drawing.Color.Red
+        Me.TxtMeilleurTemps.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtMeilleurTemps.ForeColor = System.Drawing.Color.Blue
+        Me.TxtMeilleurTemps.Location = New System.Drawing.Point(486, 246)
         Me.TxtMeilleurTemps.Name = "TxtMeilleurTemps"
-        Me.TxtMeilleurTemps.Size = New System.Drawing.Size(100, 20)
+        Me.TxtMeilleurTemps.Size = New System.Drawing.Size(100, 24)
         Me.TxtMeilleurTemps.TabIndex = 8
         '
         'TxtPartiesPremierJoueur
         '
-        Me.TxtPartiesPremierJoueur.Location = New System.Drawing.Point(570, 239)
+        Me.TxtPartiesPremierJoueur.BackColor = System.Drawing.Color.Blue
+        Me.TxtPartiesPremierJoueur.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtPartiesPremierJoueur.ForeColor = System.Drawing.Color.Red
+        Me.TxtPartiesPremierJoueur.Location = New System.Drawing.Point(486, 278)
         Me.TxtPartiesPremierJoueur.Name = "TxtPartiesPremierJoueur"
-        Me.TxtPartiesPremierJoueur.Size = New System.Drawing.Size(100, 20)
+        Me.TxtPartiesPremierJoueur.Size = New System.Drawing.Size(100, 24)
         Me.TxtPartiesPremierJoueur.TabIndex = 9
         '
         'TxtPartiesSecondJoueur
         '
-        Me.TxtPartiesSecondJoueur.Location = New System.Drawing.Point(573, 278)
+        Me.TxtPartiesSecondJoueur.BackColor = System.Drawing.Color.Red
+        Me.TxtPartiesSecondJoueur.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtPartiesSecondJoueur.ForeColor = System.Drawing.Color.Blue
+        Me.TxtPartiesSecondJoueur.Location = New System.Drawing.Point(486, 308)
         Me.TxtPartiesSecondJoueur.Name = "TxtPartiesSecondJoueur"
-        Me.TxtPartiesSecondJoueur.Size = New System.Drawing.Size(100, 20)
+        Me.TxtPartiesSecondJoueur.Size = New System.Drawing.Size(100, 24)
         Me.TxtPartiesSecondJoueur.TabIndex = 10
         '
         'TxtTempsTotal
         '
-        Me.TxtTempsTotal.Location = New System.Drawing.Point(580, 325)
+        Me.TxtTempsTotal.BackColor = System.Drawing.Color.Blue
+        Me.TxtTempsTotal.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtTempsTotal.ForeColor = System.Drawing.Color.Red
+        Me.TxtTempsTotal.Location = New System.Drawing.Point(486, 338)
         Me.TxtTempsTotal.Name = "TxtTempsTotal"
-        Me.TxtTempsTotal.Size = New System.Drawing.Size(100, 20)
+        Me.TxtTempsTotal.Size = New System.Drawing.Size(100, 24)
         Me.TxtTempsTotal.TabIndex = 11
         '
         'BtnQuit
         '
         Me.BtnQuit.BackColor = System.Drawing.Color.Gray
-        Me.BtnQuit.Location = New System.Drawing.Point(577, 12)
+        Me.BtnQuit.Location = New System.Drawing.Point(721, 12)
         Me.BtnQuit.Name = "BtnQuit"
         Me.BtnQuit.Size = New System.Drawing.Size(79, 31)
         Me.BtnQuit.TabIndex = 12
         Me.BtnQuit.Text = "Quit"
         Me.BtnQuit.UseVisualStyleBackColor = False
         '
+        'LblNom
+        '
+        Me.LblNom.AutoSize = True
+        Me.LblNom.BackColor = System.Drawing.Color.Transparent
+        Me.LblNom.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LblNom.ForeColor = System.Drawing.Color.Gold
+        Me.LblNom.Location = New System.Drawing.Point(592, 189)
+        Me.LblNom.Name = "LblNom"
+        Me.LblNom.Size = New System.Drawing.Size(44, 18)
+        Me.LblNom.TabIndex = 13
+        Me.LblNom.Text = "Nom"
+        '
+        'LblScore
+        '
+        Me.LblScore.AutoSize = True
+        Me.LblScore.BackColor = System.Drawing.Color.Transparent
+        Me.LblScore.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LblScore.ForeColor = System.Drawing.Color.Gold
+        Me.LblScore.Location = New System.Drawing.Point(592, 219)
+        Me.LblScore.Name = "LblScore"
+        Me.LblScore.Size = New System.Drawing.Size(53, 18)
+        Me.LblScore.TabIndex = 14
+        Me.LblScore.Text = "Score"
+        '
+        'LblMeilleurTemps
+        '
+        Me.LblMeilleurTemps.AutoSize = True
+        Me.LblMeilleurTemps.BackColor = System.Drawing.Color.Transparent
+        Me.LblMeilleurTemps.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LblMeilleurTemps.ForeColor = System.Drawing.Color.Gold
+        Me.LblMeilleurTemps.Location = New System.Drawing.Point(592, 252)
+        Me.LblMeilleurTemps.Name = "LblMeilleurTemps"
+        Me.LblMeilleurTemps.Size = New System.Drawing.Size(118, 18)
+        Me.LblMeilleurTemps.TabIndex = 15
+        Me.LblMeilleurTemps.Text = "MeilleurTemps"
+        '
+        'LblPartiesPremierJoueur
+        '
+        Me.LblPartiesPremierJoueur.AutoSize = True
+        Me.LblPartiesPremierJoueur.BackColor = System.Drawing.Color.Transparent
+        Me.LblPartiesPremierJoueur.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LblPartiesPremierJoueur.ForeColor = System.Drawing.Color.Gold
+        Me.LblPartiesPremierJoueur.Location = New System.Drawing.Point(592, 284)
+        Me.LblPartiesPremierJoueur.Name = "LblPartiesPremierJoueur"
+        Me.LblPartiesPremierJoueur.Size = New System.Drawing.Size(172, 18)
+        Me.LblPartiesPremierJoueur.TabIndex = 16
+        Me.LblPartiesPremierJoueur.Text = "PartiesPremierJoueur"
+        '
+        'LblPartiesSecondJoueur
+        '
+        Me.LblPartiesSecondJoueur.AutoSize = True
+        Me.LblPartiesSecondJoueur.BackColor = System.Drawing.Color.Transparent
+        Me.LblPartiesSecondJoueur.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LblPartiesSecondJoueur.ForeColor = System.Drawing.Color.Gold
+        Me.LblPartiesSecondJoueur.Location = New System.Drawing.Point(592, 314)
+        Me.LblPartiesSecondJoueur.Name = "LblPartiesSecondJoueur"
+        Me.LblPartiesSecondJoueur.Size = New System.Drawing.Size(170, 18)
+        Me.LblPartiesSecondJoueur.TabIndex = 17
+        Me.LblPartiesSecondJoueur.Text = "PartiesSecondJoueur"
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.BackColor = System.Drawing.Color.Transparent
+        Me.Label6.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label6.ForeColor = System.Drawing.Color.Gold
+        Me.Label6.Location = New System.Drawing.Point(592, 344)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(97, 18)
+        Me.Label6.TabIndex = 18
+        Me.Label6.Text = "TempsTotal"
+        '
         'FormStatJoueur
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.BackColor = System.Drawing.Color.Black
+        Me.ClientSize = New System.Drawing.Size(812, 450)
+        Me.Controls.Add(Me.Label6)
+        Me.Controls.Add(Me.LblPartiesSecondJoueur)
+        Me.Controls.Add(Me.LblPartiesPremierJoueur)
+        Me.Controls.Add(Me.LblMeilleurTemps)
+        Me.Controls.Add(Me.LblScore)
+        Me.Controls.Add(Me.LblNom)
         Me.Controls.Add(Me.BtnQuit)
         Me.Controls.Add(Me.TxtTempsTotal)
         Me.Controls.Add(Me.TxtPartiesSecondJoueur)
@@ -178,4 +295,10 @@ Partial Class FormStatJoueur
     Friend WithEvents TxtPartiesSecondJoueur As Windows.Forms.TextBox
     Friend WithEvents TxtTempsTotal As Windows.Forms.TextBox
     Friend WithEvents BtnQuit As Windows.Forms.Button
+    Friend WithEvents LblNom As Windows.Forms.Label
+    Friend WithEvents LblScore As Windows.Forms.Label
+    Friend WithEvents LblMeilleurTemps As Windows.Forms.Label
+    Friend WithEvents LblPartiesPremierJoueur As Windows.Forms.Label
+    Friend WithEvents LblPartiesSecondJoueur As Windows.Forms.Label
+    Friend WithEvents Label6 As Windows.Forms.Label
 End Class

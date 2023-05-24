@@ -9,7 +9,7 @@ Module ModuleOptionsDeJeu
     Private couleurAbsent As Color = Color.Red
     Private couleurPresent As Color = Color.Blue
     Private couleurBienPlace As Color = Color.FromArgb(0, 192, 0)
-    Private DureeLimiteTemps As TimeSpan
+    Private DureeLimiteTemps As TimeSpan = TimeSpan.FromSeconds(90)
 
     ' Méthodes pour obtenir et modifier les options
 

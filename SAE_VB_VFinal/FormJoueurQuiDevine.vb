@@ -2,18 +2,21 @@
 Imports System.Windows.Forms
 
 Public Class FormJoueurQuiDevine
-    Private combinaison As String = GetCaracteresUtilisables() ' Variable pour stocker la combinaison à deviner
     Private remainingTime As TimeSpan = GetDureeLimiteTemps()
     Private tempsRestant As Integer
 
     Private Sub FormJoueurQuiDevine_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         InitializeComponents()
+        LblCaractereJouable.Text = "Label Autorisé : " + GetCaracteresUtilisables()
+        LblAbsent.ForeColor = GetCouleurAbsent()
+        LblPresent.ForeColor = GetCouleurPresent()
+        LblPresentEtBienPlace.ForeColor = GetCouleurBienPlace()
         ResetGame()
     End Sub
 
     Private Sub InitializeComponents()
         LblRemainingAttempts.Text = GetLimitePropositions()
-        remainingTime = TimeSpan.FromMinutes(1).Add(TimeSpan.FromSeconds(30))
+        remainingTime = GetDureeLimiteTemps()
         LblRemainingTime.Text = remainingTime.ToString("m\:ss")
         lstHistorique.Items.Clear()
         lstHistorique.DrawMode = DrawMode.OwnerDrawVariable
@@ -27,7 +30,7 @@ Public Class FormJoueurQuiDevine
         tempsRestant = remainingTime.Minutes
         If remainingTime.TotalSeconds <= 0 Then
             Timer1.Stop()
-            MessageBox.Show("Désolé, le temps est écoulé.", "Défaite", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            MessageBox.Show("Désolé, le temps est écoulé." + GetCombinaison() + " Etait la combinaison", "Défaite", MessageBoxButtons.OK, MessageBoxIcon.Information)
             EndGame(False)
         Else
             LblRemainingTime.Text = remainingTime.ToString("m\:ss")
@@ -36,7 +39,7 @@ Public Class FormJoueurQuiDevine
 
     Private Function GetReponse(proposition As String) As String
         Dim reponse As String = ""
-
+        Dim combinaison = GetCombinaison()
         For i As Integer = 0 To combinaison.Length - 1
             Dim caracterePropose As Char = proposition(i)
             Dim caractereCombinaison As Char = combinaison(i)
@@ -58,7 +61,7 @@ Public Class FormJoueurQuiDevine
         remainingAttempts -= 1
 
         If remainingAttempts = 0 Then
-            MessageBox.Show("Désolé, vous avez épuisé toutes vos tentatives.", "Défaite", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            MessageBox.Show("Désolé, vous avez épuisé toutes vos tentatives." + GetCombinaison() + " Etait la combinaison", "Défaite", MessageBoxButtons.OK, MessageBoxIcon.Information)
             EndGame(False)
         Else
             LblRemainingAttempts.Text = remainingAttempts.ToString()
@@ -96,7 +99,7 @@ Public Class FormJoueurQuiDevine
     Private Sub BtnSubmit_Click(sender As Object, e As EventArgs) Handles BtnSubmit.Click
         If AllCharactersEntered() Then
             Dim proposition As String = TxtChoix1.Text & TxtChoix2.Text & TxtChoix3.Text & TxtChoix4.Text & TxtChoix5.Text
-            If proposition = combinaison Then
+            If proposition = GetCombinaison() Then
                 MessageBox.Show("Félicitations ! Vous avez deviné la combinaison.", "Victoire", MessageBoxButtons.OK, MessageBoxIcon.Information)
                 EndGame(True)
             Else
@@ -111,7 +114,7 @@ Public Class FormJoueurQuiDevine
                 ResetGame()
 
                 If Integer.Parse(LblRemainingAttempts.Text) = 0 Then
-                    MessageBox.Show("Désolé, vous avez épuisé toutes vos tentatives. La combinaison était : " & combinaison, "Défaite", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    MessageBox.Show("Désolé, vous avez épuisé toutes vos tentatives. La combinaison était : " & GetCombinaison(), "Défaite", MessageBoxButtons.OK, MessageBoxIcon.Information)
                     EndGame(False)
                 End If
             End If
@@ -127,11 +130,11 @@ Public Class FormJoueurQuiDevine
     Private Function GetColorFromResponse(responseChar As Char) As Color
         Select Case responseChar
             Case "P"c
-                Return Color.FromArgb(0, 192, 0) ' LblPresentEtBienPlace
+                Return GetCouleurBienPlace() ' LblPresentEtBienPlace
             Case "M"c
-                Return Color.Blue ' LblPresent
+                Return GetCouleurPresent() ' LblPresent
             Case Else
-                Return Color.Red ' LblAbsent
+                Return GetCouleurAbsent() ' LblAbsent
         End Select
     End Function
 
@@ -145,11 +148,14 @@ Public Class FormJoueurQuiDevine
     Private Sub EndGame(Joueur1APerdu As Boolean)
         If Joueur1APerdu Then
             ajouterStats(getDeuxiemeJoueur(), tempsRestant)
+            SetJoueurQuiGagne(getDeuxiemeJoueur().nom)
         Else
             ajouterStats(getPremierJoueur(), tempsRestant)
+            SetJoueurQuiGagne(getPremierJoueur().nom)
         End If
         SauvegarderHistoriqueDansFichier()
-        Application.Exit() ' Fermer l'application
+        FormPartieTerminee.Show()
+        Me.Hide()
     End Sub
 
 

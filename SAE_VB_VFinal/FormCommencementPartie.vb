@@ -10,11 +10,11 @@ Public Class FormCommencementPartie
 
             ' Vérifie si les caractères saisis sont valides
             Dim caracteresAutorises As String = ModuleOptionsDeJeu.GetCaracteresUtilisables()
-            combinaison = TxtCaractere1.Text & TxtCaractere2.Text & TxtCaractere3.Text & TxtCaractere4.Text & TxtCaractere5.Text
+            SetCombinaison(TxtCaractere1.Text & TxtCaractere2.Text & TxtCaractere3.Text & TxtCaractere4.Text & TxtCaractere5.Text)
 
             ' Vérifie si chaque caractère de la combinaison est autorisé
             Dim caracteresInvalides As String = ""
-            For Each caractere As Char In combinaison
+            For Each caractere As Char In GetCombinaison()
                 If Not caracteresAutorises.Contains(caractere) Then
                     caracteresInvalides &= caractere & " "
                 End If
@@ -35,9 +35,7 @@ Public Class FormCommencementPartie
         End If
     End Sub
 
-    Public Function GetCombinaison() As String
-        Return combinaison
-    End Function
+
 
     Private Sub FormCommencementPartie_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         LblCaractereJouable.Text = "Caractères autorisés : " & ModuleOptionsDeJeu.GetCaracteresUtilisables()

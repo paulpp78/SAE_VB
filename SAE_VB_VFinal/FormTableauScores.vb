@@ -24,10 +24,16 @@ Public Class FormTableauScores
         Controls.Add(DgvTabScore)
     End Sub
 
+
     Private Sub FormTableauScores_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ' Lier les données du tableau des scores au DataGridView
-        DgvTabScore.DataSource = ModuleJoueur.joueursHistorique
+        DgvTabScore.Rows.Clear() ' Effacer les données existantes
+
+        For Each joueur In ModuleJoueur.joueursHistorique
+            DgvTabScore.Rows.Add(joueur.nom, joueur.score, joueur.meilleurTemps, joueur.nbrPartiesPremierJoueur, joueur.nbrPartiesSecondJoueur, joueur.cumulTemps)
+        Next
     End Sub
+
 
     Private Sub BtnQuit_Click(sender As Object, e As EventArgs) Handles BtnQuit.Click
         ' Affiche une boîte de dialogue de confirmation avant de quitter l'application

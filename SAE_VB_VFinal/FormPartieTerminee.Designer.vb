@@ -23,10 +23,7 @@ Partial Class FormPartieTerminee
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.LblResultat = New System.Windows.Forms.Label()
-        Me.LblJoueurQuiPropose = New System.Windows.Forms.Label()
-        Me.LblJoueurQuiJoue = New System.Windows.Forms.Label()
         Me.BtnNouvellePartie = New System.Windows.Forms.Button()
-        Me.BtnQuitterlejeu = New System.Windows.Forms.Button()
         Me.BtnContinuerSansRejouer = New System.Windows.Forms.Button()
         Me.BtnQuit = New System.Windows.Forms.Button()
         Me.SuspendLayout()
@@ -34,63 +31,46 @@ Partial Class FormPartieTerminee
         'LblResultat
         '
         Me.LblResultat.AutoSize = True
-        Me.LblResultat.Location = New System.Drawing.Point(191, 143)
+        Me.LblResultat.BackColor = System.Drawing.Color.Transparent
+        Me.LblResultat.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LblResultat.ForeColor = System.Drawing.Color.Transparent
+        Me.LblResultat.Location = New System.Drawing.Point(180, 50)
         Me.LblResultat.Name = "LblResultat"
-        Me.LblResultat.Size = New System.Drawing.Size(46, 13)
+        Me.LblResultat.Size = New System.Drawing.Size(77, 20)
         Me.LblResultat.TabIndex = 0
         Me.LblResultat.Text = "Resultat"
         '
-        'LblJoueurQuiPropose
-        '
-        Me.LblJoueurQuiPropose.AutoSize = True
-        Me.LblJoueurQuiPropose.Location = New System.Drawing.Point(306, 143)
-        Me.LblJoueurQuiPropose.Name = "LblJoueurQuiPropose"
-        Me.LblJoueurQuiPropose.Size = New System.Drawing.Size(39, 13)
-        Me.LblJoueurQuiPropose.TabIndex = 1
-        Me.LblJoueurQuiPropose.Text = "Label2"
-        '
-        'LblJoueurQuiJoue
-        '
-        Me.LblJoueurQuiJoue.AutoSize = True
-        Me.LblJoueurQuiJoue.Location = New System.Drawing.Point(569, 143)
-        Me.LblJoueurQuiJoue.Name = "LblJoueurQuiJoue"
-        Me.LblJoueurQuiJoue.Size = New System.Drawing.Size(39, 13)
-        Me.LblJoueurQuiJoue.TabIndex = 2
-        Me.LblJoueurQuiJoue.Text = "Label3"
-        '
         'BtnNouvellePartie
         '
-        Me.BtnNouvellePartie.Location = New System.Drawing.Point(85, 249)
+        Me.BtnNouvellePartie.BackColor = System.Drawing.Color.Red
+        Me.BtnNouvellePartie.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnNouvellePartie.ForeColor = System.Drawing.Color.Gold
+        Me.BtnNouvellePartie.Location = New System.Drawing.Point(12, 126)
         Me.BtnNouvellePartie.Name = "BtnNouvellePartie"
-        Me.BtnNouvellePartie.Size = New System.Drawing.Size(166, 23)
+        Me.BtnNouvellePartie.Size = New System.Drawing.Size(166, 61)
         Me.BtnNouvellePartie.TabIndex = 3
         Me.BtnNouvellePartie.Text = "Nouvelle Partie ?"
-        Me.BtnNouvellePartie.UseVisualStyleBackColor = True
-        '
-        'BtnQuitterlejeu
-        '
-        Me.BtnQuitterlejeu.Location = New System.Drawing.Point(687, 49)
-        Me.BtnQuitterlejeu.Name = "BtnQuitterlejeu"
-        Me.BtnQuitterlejeu.Size = New System.Drawing.Size(75, 23)
-        Me.BtnQuitterlejeu.TabIndex = 4
-        Me.BtnQuitterlejeu.Text = "Quitter ?"
-        Me.BtnQuitterlejeu.UseVisualStyleBackColor = True
+        Me.BtnNouvellePartie.UseVisualStyleBackColor = False
         '
         'BtnContinuerSansRejouer
         '
-        Me.BtnContinuerSansRejouer.Location = New System.Drawing.Point(559, 249)
+        Me.BtnContinuerSansRejouer.BackColor = System.Drawing.Color.Blue
+        Me.BtnContinuerSansRejouer.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnContinuerSansRejouer.ForeColor = System.Drawing.Color.Gold
+        Me.BtnContinuerSansRejouer.Location = New System.Drawing.Point(271, 126)
         Me.BtnContinuerSansRejouer.Name = "BtnContinuerSansRejouer"
-        Me.BtnContinuerSansRejouer.Size = New System.Drawing.Size(129, 23)
+        Me.BtnContinuerSansRejouer.Size = New System.Drawing.Size(166, 61)
         Me.BtnContinuerSansRejouer.TabIndex = 5
         Me.BtnContinuerSansRejouer.Text = "Continuer sans rejouer"
-        Me.BtnContinuerSansRejouer.UseVisualStyleBackColor = True
+        Me.BtnContinuerSansRejouer.UseVisualStyleBackColor = False
         '
         'BtnQuit
         '
         Me.BtnQuit.BackColor = System.Drawing.Color.Gray
-        Me.BtnQuit.Location = New System.Drawing.Point(599, 12)
+        Me.BtnQuit.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnQuit.Location = New System.Drawing.Point(382, 12)
         Me.BtnQuit.Name = "BtnQuit"
-        Me.BtnQuit.Size = New System.Drawing.Size(79, 31)
+        Me.BtnQuit.Size = New System.Drawing.Size(55, 40)
         Me.BtnQuit.TabIndex = 6
         Me.BtnQuit.Text = "Quit"
         Me.BtnQuit.UseVisualStyleBackColor = False
@@ -99,13 +79,11 @@ Partial Class FormPartieTerminee
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.BackColor = System.Drawing.Color.Black
+        Me.ClientSize = New System.Drawing.Size(449, 199)
         Me.Controls.Add(Me.BtnQuit)
         Me.Controls.Add(Me.BtnContinuerSansRejouer)
-        Me.Controls.Add(Me.BtnQuitterlejeu)
         Me.Controls.Add(Me.BtnNouvellePartie)
-        Me.Controls.Add(Me.LblJoueurQuiJoue)
-        Me.Controls.Add(Me.LblJoueurQuiPropose)
         Me.Controls.Add(Me.LblResultat)
         Me.Name = "FormPartieTerminee"
         Me.Text = "FormPartieTerminee"
@@ -115,10 +93,7 @@ Partial Class FormPartieTerminee
     End Sub
 
     Friend WithEvents LblResultat As Windows.Forms.Label
-    Friend WithEvents LblJoueurQuiPropose As Windows.Forms.Label
-    Friend WithEvents LblJoueurQuiJoue As Windows.Forms.Label
     Friend WithEvents BtnNouvellePartie As Windows.Forms.Button
-    Friend WithEvents BtnQuitterlejeu As Windows.Forms.Button
     Friend WithEvents BtnContinuerSansRejouer As Windows.Forms.Button
     Friend WithEvents BtnQuit As Windows.Forms.Button
 End Class
