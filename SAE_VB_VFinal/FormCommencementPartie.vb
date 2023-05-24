@@ -2,7 +2,6 @@
 Imports System.Windows.Forms
 
 Public Class FormCommencementPartie
-    Private combinaison As String
 
     Private Sub BtnNext_Click(sender As Object, e As EventArgs) Handles BtnNext.Click
         ' Vérifie si tous les caractères ont été saisis

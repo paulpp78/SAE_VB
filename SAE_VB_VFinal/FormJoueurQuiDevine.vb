@@ -4,7 +4,6 @@ Imports System.Windows.Forms
 Public Class FormJoueurQuiDevine
     Private combinaison As String = GetCaracteresUtilisables() ' Variable pour stocker la combinaison à deviner
     Private remainingTime As TimeSpan = GetDureeLimiteTemps()
-    Private colors As Color()
     Private tempsRestant As Integer
 
     Private Sub FormJoueurQuiDevine_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -149,7 +148,6 @@ Public Class FormJoueurQuiDevine
         Else
             ajouterStats(getPremierJoueur(), tempsRestant)
         End If
-
         SauvegarderHistoriqueDansFichier()
         Application.Exit() ' Fermer l'application
     End Sub

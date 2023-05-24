@@ -1,8 +1,6 @@
 ﻿Imports System.Windows.Forms
 
 Public Class FormPartieTerminee
-    Private joueurQuiPropose As String
-    Private joueurQuiJoue As String
 
     ' Méthode pour initialiser les labels avec les noms des joueurs
     Public Sub RemplirLabels(nomJoueurQuiPropose As String, nomJoueurQuiJoue As String)
