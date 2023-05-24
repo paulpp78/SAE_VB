@@ -1,12 +1,17 @@
-﻿Imports System.Windows.Forms
+﻿Imports System.Drawing
+Imports System.Windows.Forms
 
 Public Class FormCommencementPartie
+    Private combinaison As String
+
     Private Sub BtnNext_Click(sender As Object, e As EventArgs) Handles BtnNext.Click
         ' Vérifie si tous les caractères ont été saisis
         If TxtCaractere1.TextLength = 1 AndAlso TxtCaractere2.TextLength = 1 AndAlso TxtCaractere3.TextLength = 1 AndAlso TxtCaractere4.TextLength = 1 AndAlso TxtCaractere5.TextLength = 1 Then
+            SauvegarderHistoriqueDansFichier()
+
             ' Vérifie si les caractères saisis sont valides
-            Dim caracteresAutorises As String = "!@#$%"
-            Dim combinaison As String = TxtCaractere1.Text & TxtCaractere2.Text & TxtCaractere3.Text & TxtCaractere4.Text & TxtCaractere5.Text
+            Dim caracteresAutorises As String = ModuleOptionsDeJeu.GetCaracteresUtilisables()
+            combinaison = TxtCaractere1.Text & TxtCaractere2.Text & TxtCaractere3.Text & TxtCaractere4.Text & TxtCaractere5.Text
 
             ' Vérifie si chaque caractère de la combinaison est autorisé
             Dim caracteresInvalides As String = ""
@@ -31,7 +36,32 @@ Public Class FormCommencementPartie
         End If
     End Sub
 
+    Public Function GetCombinaison() As String
+        Return combinaison
+    End Function
+
     Private Sub FormCommencementPartie_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        LblCaractereJouable.Text = "Caractères autorisés : ! @ # $ %"
+        LblCaractereJouable.Text = "Caractères autorisés : " & ModuleOptionsDeJeu.GetCaracteresUtilisables()
+    End Sub
+
+    Private Sub BtnQuit_Click(sender As Object, e As EventArgs) Handles BtnQuit.Click
+        ' Affiche une boîte de dialogue de confirmation avant de quitter l'application
+        Dim confirmation As DialogResult = MessageBox.Show("Voulez-vous vraiment quitter ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+
+        If confirmation = DialogResult.Yes Then
+            Me.Close()
+            StartAppli.Show()
+        End If
+    End Sub
+
+    Private Sub BtnRandom_Click(sender As Object, e As EventArgs) Handles BtnRandom.Click
+        Dim caracteresAutorises As String = ModuleOptionsDeJeu.GetCaracteresUtilisables()
+        Dim random As New Random()
+
+        TxtCaractere1.Text = caracteresAutorises(random.Next(0, caracteresAutorises.Length))
+        TxtCaractere2.Text = caracteresAutorises(random.Next(0, caracteresAutorises.Length))
+        TxtCaractere3.Text = caracteresAutorises(random.Next(0, caracteresAutorises.Length))
+        TxtCaractere4.Text = caracteresAutorises(random.Next(0, caracteresAutorises.Length))
+        TxtCaractere5.Text = caracteresAutorises(random.Next(0, caracteresAutorises.Length))
     End Sub
 End Class

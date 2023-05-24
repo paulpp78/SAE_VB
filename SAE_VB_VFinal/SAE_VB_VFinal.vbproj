@@ -5,12 +5,12 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{A265C241-3209-4DFC-8C4C-3FA51F0A691D}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>WinExe</OutputType>
     <StartupObject>SAE_VB_VFinal.ModulePartie</StartupObject>
     <RootNamespace>SAE_VB_VFinal</RootNamespace>
     <AssemblyName>SAE_VB_VFinal</AssemblyName>
     <FileAlignment>512</FileAlignment>
-    <MyType>Console</MyType>
+    <MyType>WindowsFormsWithCustomSubMain</MyType>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
@@ -71,6 +71,12 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Choix_Partie.Designer.vb">
+      <DependentUpon>Choix_Partie.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Choix_Partie.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormCommencementPartie.Designer.vb">
       <DependentUpon>FormCommencementPartie.vb</DependentUpon>
     </Compile>
@@ -119,6 +125,7 @@
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
       <DependentUpon>Application.myapp</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="My Project\Resources.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -131,8 +138,17 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="ModuleOptionsDeJeu.vb" />
+    <Compile Include="StartAppli.Designer.vb">
+      <DependentUpon>StartAppli.vb</DependentUpon>
+    </Compile>
+    <Compile Include="StartAppli.vb">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Choix_Partie.resx">
+      <DependentUpon>Choix_Partie.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormAccueil.resx">
       <DependentUpon>FormAccueil.vb</DependentUpon>
     </EmbeddedResource>
@@ -160,6 +176,9 @@
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="StartAppli.resx">
+      <DependentUpon>StartAppli.vb</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="My Project\Application.myapp">
@@ -172,6 +191,9 @@
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Capture d’écran 2023-05-24 000006.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

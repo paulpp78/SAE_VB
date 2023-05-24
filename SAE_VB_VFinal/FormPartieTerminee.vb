@@ -44,4 +44,13 @@ Public Class FormPartieTerminee
         Me.Close() ' Fermer le formulaire actuel
     End Sub
 
+    Private Sub BtnQuit_Click(sender As Object, e As EventArgs) Handles BtnQuit.Click
+        ' Affiche une boîte de dialogue de confirmation avant de quitter l'application
+        Dim confirmation As DialogResult = MessageBox.Show("Voulez-vous vraiment quitter ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+
+        If confirmation = DialogResult.Yes Then
+            Me.Close()
+            StartAppli.Show()
+        End If
+    End Sub
 End Class

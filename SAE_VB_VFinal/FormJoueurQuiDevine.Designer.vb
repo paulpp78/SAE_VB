@@ -37,6 +37,7 @@ Partial Class FormJoueurQuiDevine
         Me.LblPresent = New System.Windows.Forms.Label()
         Me.LblPresentEtBienPlace = New System.Windows.Forms.Label()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
+        Me.BtnQuit = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'LblCaractereJouable
@@ -118,7 +119,7 @@ Partial Class FormJoueurQuiDevine
         'lstHistorique
         '
         Me.lstHistorique.FormattingEnabled = True
-        Me.lstHistorique.Location = New System.Drawing.Point(41, 161)
+        Me.lstHistorique.Location = New System.Drawing.Point(41, 143)
         Me.lstHistorique.Name = "lstHistorique"
         Me.lstHistorique.Size = New System.Drawing.Size(84, 264)
         Me.lstHistorique.TabIndex = 9
@@ -156,11 +157,22 @@ Partial Class FormJoueurQuiDevine
         'Timer1
         '
         '
+        'BtnQuit
+        '
+        Me.BtnQuit.BackColor = System.Drawing.Color.Gray
+        Me.BtnQuit.Location = New System.Drawing.Point(709, 12)
+        Me.BtnQuit.Name = "BtnQuit"
+        Me.BtnQuit.Size = New System.Drawing.Size(79, 31)
+        Me.BtnQuit.TabIndex = 13
+        Me.BtnQuit.Text = "Quit"
+        Me.BtnQuit.UseVisualStyleBackColor = False
+        '
         'FormJoueurQuiDevine
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.Controls.Add(Me.BtnQuit)
         Me.Controls.Add(Me.LblPresentEtBienPlace)
         Me.Controls.Add(Me.LblPresent)
         Me.Controls.Add(Me.LblAbsent)
@@ -195,4 +207,5 @@ Partial Class FormJoueurQuiDevine
     Friend WithEvents LblPresent As Windows.Forms.Label
     Friend WithEvents LblPresentEtBienPlace As Windows.Forms.Label
     Friend WithEvents Timer1 As Windows.Forms.Timer
+    Friend WithEvents BtnQuit As Windows.Forms.Button
 End Class

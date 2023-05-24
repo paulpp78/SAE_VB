@@ -28,6 +28,7 @@ Partial Class FormPartieTerminee
         Me.BtnNouvellePartie = New System.Windows.Forms.Button()
         Me.BtnQuitterlejeu = New System.Windows.Forms.Button()
         Me.BtnContinuerSansRejouer = New System.Windows.Forms.Button()
+        Me.BtnQuit = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'LblResultat
@@ -84,11 +85,22 @@ Partial Class FormPartieTerminee
         Me.BtnContinuerSansRejouer.Text = "Continuer sans rejouer"
         Me.BtnContinuerSansRejouer.UseVisualStyleBackColor = True
         '
+        'BtnQuit
+        '
+        Me.BtnQuit.BackColor = System.Drawing.Color.Gray
+        Me.BtnQuit.Location = New System.Drawing.Point(599, 12)
+        Me.BtnQuit.Name = "BtnQuit"
+        Me.BtnQuit.Size = New System.Drawing.Size(79, 31)
+        Me.BtnQuit.TabIndex = 6
+        Me.BtnQuit.Text = "Quit"
+        Me.BtnQuit.UseVisualStyleBackColor = False
+        '
         'FormPartieTerminee
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.Controls.Add(Me.BtnQuit)
         Me.Controls.Add(Me.BtnContinuerSansRejouer)
         Me.Controls.Add(Me.BtnQuitterlejeu)
         Me.Controls.Add(Me.BtnNouvellePartie)
@@ -108,4 +120,5 @@ Partial Class FormPartieTerminee
     Friend WithEvents BtnNouvellePartie As Windows.Forms.Button
     Friend WithEvents BtnQuitterlejeu As Windows.Forms.Button
     Friend WithEvents BtnContinuerSansRejouer As Windows.Forms.Button
+    Friend WithEvents BtnQuit As Windows.Forms.Button
 End Class

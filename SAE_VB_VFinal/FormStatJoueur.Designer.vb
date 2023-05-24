@@ -28,6 +28,13 @@ Partial Class FormStatJoueur
         Me.BtnTriTemps = New System.Windows.Forms.Button()
         Me.CbnRechercheJoueur = New System.Windows.Forms.ComboBox()
         Me.BtnRechercherJoueur = New System.Windows.Forms.Button()
+        Me.TxtNom = New System.Windows.Forms.TextBox()
+        Me.TxtScore = New System.Windows.Forms.TextBox()
+        Me.TxtMeilleurTemps = New System.Windows.Forms.TextBox()
+        Me.TxtPartiesPremierJoueur = New System.Windows.Forms.TextBox()
+        Me.TxtPartiesSecondJoueur = New System.Windows.Forms.TextBox()
+        Me.TxtTempsTotal = New System.Windows.Forms.TextBox()
+        Me.BtnQuit = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'LstJoueurs
@@ -82,11 +89,70 @@ Partial Class FormStatJoueur
         Me.BtnRechercherJoueur.Text = "Rechercher"
         Me.BtnRechercherJoueur.UseVisualStyleBackColor = True
         '
+        'TxtNom
+        '
+        Me.TxtNom.Location = New System.Drawing.Point(549, 96)
+        Me.TxtNom.Name = "TxtNom"
+        Me.TxtNom.Size = New System.Drawing.Size(100, 20)
+        Me.TxtNom.TabIndex = 6
+        '
+        'TxtScore
+        '
+        Me.TxtScore.Location = New System.Drawing.Point(556, 143)
+        Me.TxtScore.Name = "TxtScore"
+        Me.TxtScore.Size = New System.Drawing.Size(100, 20)
+        Me.TxtScore.TabIndex = 7
+        '
+        'TxtMeilleurTemps
+        '
+        Me.TxtMeilleurTemps.Location = New System.Drawing.Point(567, 199)
+        Me.TxtMeilleurTemps.Name = "TxtMeilleurTemps"
+        Me.TxtMeilleurTemps.Size = New System.Drawing.Size(100, 20)
+        Me.TxtMeilleurTemps.TabIndex = 8
+        '
+        'TxtPartiesPremierJoueur
+        '
+        Me.TxtPartiesPremierJoueur.Location = New System.Drawing.Point(570, 239)
+        Me.TxtPartiesPremierJoueur.Name = "TxtPartiesPremierJoueur"
+        Me.TxtPartiesPremierJoueur.Size = New System.Drawing.Size(100, 20)
+        Me.TxtPartiesPremierJoueur.TabIndex = 9
+        '
+        'TxtPartiesSecondJoueur
+        '
+        Me.TxtPartiesSecondJoueur.Location = New System.Drawing.Point(573, 278)
+        Me.TxtPartiesSecondJoueur.Name = "TxtPartiesSecondJoueur"
+        Me.TxtPartiesSecondJoueur.Size = New System.Drawing.Size(100, 20)
+        Me.TxtPartiesSecondJoueur.TabIndex = 10
+        '
+        'TxtTempsTotal
+        '
+        Me.TxtTempsTotal.Location = New System.Drawing.Point(580, 325)
+        Me.TxtTempsTotal.Name = "TxtTempsTotal"
+        Me.TxtTempsTotal.Size = New System.Drawing.Size(100, 20)
+        Me.TxtTempsTotal.TabIndex = 11
+        '
+        'BtnQuit
+        '
+        Me.BtnQuit.BackColor = System.Drawing.Color.Gray
+        Me.BtnQuit.Location = New System.Drawing.Point(577, 12)
+        Me.BtnQuit.Name = "BtnQuit"
+        Me.BtnQuit.Size = New System.Drawing.Size(79, 31)
+        Me.BtnQuit.TabIndex = 12
+        Me.BtnQuit.Text = "Quit"
+        Me.BtnQuit.UseVisualStyleBackColor = False
+        '
         'FormStatJoueur
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.Controls.Add(Me.BtnQuit)
+        Me.Controls.Add(Me.TxtTempsTotal)
+        Me.Controls.Add(Me.TxtPartiesSecondJoueur)
+        Me.Controls.Add(Me.TxtPartiesPremierJoueur)
+        Me.Controls.Add(Me.TxtMeilleurTemps)
+        Me.Controls.Add(Me.TxtScore)
+        Me.Controls.Add(Me.TxtNom)
         Me.Controls.Add(Me.BtnRechercherJoueur)
         Me.Controls.Add(Me.CbnRechercheJoueur)
         Me.Controls.Add(Me.BtnTriTemps)
@@ -94,8 +160,8 @@ Partial Class FormStatJoueur
         Me.Controls.Add(Me.BtnTriNom)
         Me.Controls.Add(Me.LstJoueurs)
         Me.Name = "FormStatJoueur"
-        Me.Text = "FormStatJoueur"
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
 
@@ -105,4 +171,11 @@ Partial Class FormStatJoueur
     Friend WithEvents BtnTriTemps As Windows.Forms.Button
     Friend WithEvents CbnRechercheJoueur As Windows.Forms.ComboBox
     Friend WithEvents BtnRechercherJoueur As Windows.Forms.Button
+    Friend WithEvents TxtNom As Windows.Forms.TextBox
+    Friend WithEvents TxtScore As Windows.Forms.TextBox
+    Friend WithEvents TxtMeilleurTemps As Windows.Forms.TextBox
+    Friend WithEvents TxtPartiesPremierJoueur As Windows.Forms.TextBox
+    Friend WithEvents TxtPartiesSecondJoueur As Windows.Forms.TextBox
+    Friend WithEvents TxtTempsTotal As Windows.Forms.TextBox
+    Friend WithEvents BtnQuit As Windows.Forms.Button
 End Class

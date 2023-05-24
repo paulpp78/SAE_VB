@@ -2,8 +2,8 @@
 Imports System.Windows.Forms
 
 Public Class FormJoueurQuiDevine
-    Private combinaison As String ' Variable pour stocker la combinaison à deviner
-    Private remainingTime As TimeSpan ' Variable pour stocker le temps restant
+    Private combinaison As String = GetCaracteresUtilisables() ' Variable pour stocker la combinaison à deviner
+    Private remainingTime As TimeSpan = GetDureeLimiteTemps()
     Private colors As Color()
     Private tempsRestant As Integer
 
@@ -13,7 +13,7 @@ Public Class FormJoueurQuiDevine
     End Sub
 
     Private Sub InitializeComponents()
-        LblRemainingAttempts.Text = "15"
+        LblRemainingAttempts.Text = GetLimitePropositions()
         remainingTime = TimeSpan.FromMinutes(1).Add(TimeSpan.FromSeconds(30))
         LblRemainingTime.Text = remainingTime.ToString("m\:ss")
         lstHistorique.Items.Clear()
@@ -145,14 +145,15 @@ Public Class FormJoueurQuiDevine
 
     Private Sub EndGame(Joueur1APerdu As Boolean)
         If Joueur1APerdu Then
-            ModuleJoueur.AjouterStats(getDeuxiemeJoueur, tempsRestant)
+            ajouterStats(getDeuxiemeJoueur(), tempsRestant)
         Else
-            ModuleJoueur.AjouterStats(getPremierJoueur, tempsRestant)
+            ajouterStats(getPremierJoueur(), tempsRestant)
         End If
 
-        SauvegarderHistorique()
-        Me.Close() ' Fermer le formulaire actuel
+        SauvegarderHistoriqueDansFichier()
+        Application.Exit() ' Fermer l'application
     End Sub
+
 
     Private Sub ResetGame()
         TxtChoix1.Clear()
@@ -161,5 +162,15 @@ Public Class FormJoueurQuiDevine
         TxtChoix3.Clear()
         TxtChoix5.Clear()
         TxtChoix1.Focus()
+    End Sub
+
+    Private Sub BtnQuit_Click(sender As Object, e As EventArgs) Handles BtnQuit.Click
+        ' Affiche une boîte de dialogue de confirmation avant de quitter l'application
+        Dim confirmation As DialogResult = MessageBox.Show("Voulez-vous vraiment quitter ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+
+        If confirmation = DialogResult.Yes Then
+            Me.Close()
+            StartAppli.Show()
+        End If
     End Sub
 End Class
