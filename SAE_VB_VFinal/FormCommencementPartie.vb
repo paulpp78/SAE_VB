@@ -21,8 +21,9 @@ Public Class FormCommencementPartie
             If caracteresInvalides = "" Then
                 ' La combinaison est valide, tu peux effectuer l'action souhaitée
                 ' Passe à la prochaine étape du jeu
-                FormJoueurQuiDevine.Show()
-                Me.Close() ' Ferme le formulaire actuel
+                Me.Dispose() ' Ferme le formulaire actuel
+                FormJoueurQuiDevine.ShowDialog()
+
             Else
                 ' Affiche un message d'erreur avec les caractères invalides
                 MessageBox.Show("Les caractères suivants ne sont pas autorisés : " & caracteresInvalides, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error)

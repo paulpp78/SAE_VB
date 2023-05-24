@@ -21,7 +21,7 @@ Public Class FormAccueil
             CmbJoueur2.Text = ""
             ' Cache le formulaire FormAccueil au lieu de le fermer
             Me.Hide()
-            FormCommencementPartie.Show()
+            FormCommencementPartie.ShowDialog()
         Else
             ' Affiche un message d'erreur si les noms des joueurs sont identiques ou non saisis
             MessageBox.Show("Veuillez saisir des noms de joueurs différents.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error)

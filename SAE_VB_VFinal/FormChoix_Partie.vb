@@ -14,21 +14,22 @@ Public Class FormChoix_Partie
     End Sub
 
     Private Sub BtnEasy_Click(sender As Object, e As EventArgs) Handles BtnEasy.Click
-        ModuleOptionsDeJeu.SetOptionsImportants(True, 10, TimeSpan.FromMinutes(2))
-        FormAccueil.Show()
-        Me.Hide()
+        ModuleOptionsDeJeu.SetOptionsImportants(False, 10, TimeSpan.FromMinutes(2))
+        Me.Dispose()
+        FormAccueil.ShowDialog()
+
     End Sub
 
     Private Sub BtnModerate_Click(sender As Object, e As EventArgs) Handles BtnModerate.Click
-        ModuleOptionsDeJeu.SetOptionsImportants(True, 7, TimeSpan.FromSeconds(45))
-        FormAccueil.Show()
-        Me.Hide()
+        ModuleOptionsDeJeu.SetOptionsImportants(False, 7, TimeSpan.FromSeconds(45))
+
+
     End Sub
 
     Private Sub BtnHard_Click(sender As Object, e As EventArgs) Handles BtnHard.Click
-        ModuleOptionsDeJeu.SetOptionsImportants(True, 4, TimeSpan.FromSeconds(15))
-        FormAccueil.Show()
-        Me.Hide()
+        ModuleOptionsDeJeu.SetOptionsImportants(False, 4, TimeSpan.FromSeconds(15))
+        Me.Dispose()
+        FormAccueil.ShowDialog()
 
     End Sub
 

@@ -1,11 +1,11 @@
 ﻿Imports System.Drawing
 Imports System.Windows.Forms
 
-Module ModuleOptionsDeJeu
-    Private limiteTempsActif As Boolean = False
+Public Module ModuleOptionsDeJeu
+    Private limiteTempsdesaActif As Boolean = False
     Private caracteresUtilisables As String = "!@#$%"
     Private limitePropositions As Integer = 15
-    Public cheminSauvegardePartie As String = "./MasterMind.txt"
+    Private cheminSauvegardePartie As String = "./MasterMind.txt"
     Private couleurAbsent As Color = Color.Red
     Private couleurPresent As Color = Color.Blue
     Private couleurBienPlace As Color = Color.FromArgb(0, 192, 0)
@@ -14,7 +14,7 @@ Module ModuleOptionsDeJeu
     ' Méthodes pour obtenir et modifier les options
 
     Public Sub SetAllOptions(ByVal limiteTemps As Boolean, ByVal caracteres As String, ByVal limiteProp As Integer, ByVal cheminSauvegarde As String, ByVal couleurAbs As Color, ByVal couleurPres As Color, ByVal couleurBienPl As Color, DurelimTmp As TimeSpan)
-        limiteTempsActif = limiteTemps
+        limiteTempsdesaActif = limiteTemps
         caracteresUtilisables = caracteres
         limitePropositions = limiteProp
         cheminSauvegardePartie = cheminSauvegarde
@@ -24,7 +24,6 @@ Module ModuleOptionsDeJeu
         DureeLimiteTemps = DurelimTmp
     End Sub
 
-
     Public Function GetDureeLimiteTemps() As TimeSpan
         Return DureeLimiteTemps
     End Function
@@ -33,18 +32,18 @@ Module ModuleOptionsDeJeu
         DureeLimiteTemps = duree
     End Sub
 
-
     Public Sub SetOptionsImportants(ByVal limiteTemps As Boolean, ByVal limiteProp As Integer, ByVal DureeLim As TimeSpan)
-        limiteTempsActif = limiteTemps
+        limiteTempsdesaActif = limiteTemps
         limitePropositions = limiteProp
         DureeLimiteTemps = DureeLim
     End Sub
+
     Public Function GetLimiteTempsActif() As Boolean
-        Return limiteTempsActif
+        Return limiteTempsdesaActif
     End Function
 
     Public Sub SetLimiteTempsActif(ByVal value As Boolean)
-        limiteTempsActif = value
+        limiteTempsdesaActif = value
     End Sub
 
     Public Function GetCaracteresUtilisables() As String

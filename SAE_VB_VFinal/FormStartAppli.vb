@@ -21,23 +21,23 @@ Public Class FormStartAppli
         ' Affiche le formulaire du tableau des scores
         'Dim formTableauScores As New FormTableauScores()
         'FormTableauScores.ShowDialog()
-        FormTableauScores.Show()
-        Me.Hide()
+        FormTableauScores.ShowDialog()
+        Me.Close()
     End Sub
 
     Private Sub BtnOption_Click(sender As Object, e As EventArgs) Handles BtnOption.Click
 
         'Dim formOption As New FormOption()
         'FormOption.ShowDialog()
-        FormChoix_Partie.Show()
-        Me.Hide()
+        FormChoix_Partie.ShowDialog()
+        Me.Close()
     End Sub
 
     Private Sub BtnStatJoueur_Click(sender As Object, e As EventArgs) Handles BtnStatJoueur.Click
         'Dim formStatJoueur As New FormStatJoueur
         'formStatJoueur.ShowDialog()
-        FormStatJoueur.Show()
-        Me.Hide()
+        FormStatJoueur.ShowDialog()
+        Me.Close()
 
 
     End Sub

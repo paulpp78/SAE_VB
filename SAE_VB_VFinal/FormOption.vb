@@ -9,7 +9,7 @@ Public Class FormOption
 
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
         ' Vérifier que toutes les options sont remplies
-        If RdBtnTmp.Checked = False AndAlso TrckBarTemps.Value = 0 Then
+        If Not RdBtnTmp.Checked AndAlso TrckBarTemps.Value = 0 Then
             MessageBox.Show("Veuillez spécifier une durée limite de temps.", "Options incomplètes", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Return
         End If
@@ -30,24 +30,18 @@ Public Class FormOption
         End If
 
         ' Enregistrer les options dans le module ModuleOptionsDeJeu
-        ModuleOptionsDeJeu.SetAllOptions(RdBtnTmp.Checked, TxtCaracteres.Text, NumUpDownNbProposition.Value, TxtSelectedFile.Text, BtnCouleurAbsent.BackColor, BtnCouleurPresent.BackColor, BtnCouleurBienPlace.BackColor, TimeSpan.FromSeconds(TrckBarTemps.Value))
+        Dim limiteTemps As TimeSpan = If(RdBtnTmp.Checked, TimeSpan.Zero, TimeSpan.FromSeconds(TrckBarTemps.Value))
+        ModuleOptionsDeJeu.SetAllOptions(RdBtnTmp.Checked, TxtCaracteres.Text, NumUpDownNbProposition.Value, TxtSelectedFile.Text, BtnCouleurAbsent.BackColor, BtnCouleurPresent.BackColor, BtnCouleurBienPlace.BackColor, limiteTemps)
 
         MessageBox.Show("Les options ont été enregistrées avec succès.", "Enregistrement", MessageBoxButtons.OK, MessageBoxIcon.Information)
         FormAccueil.Show()
         Me.Hide()
     End Sub
 
-
     Private Sub RdBtnTmp_CheckedChanged(sender As Object, e As EventArgs) Handles RdBtnTmp.CheckedChanged
-        If RdBtnTmp.Checked Then
-            ' Si le RadioButton est coché, masquer la TrackBar et la désactiver
-            TrckBarTemps.Hide()
-            TrckBarTemps.Enabled = False
-        Else
-            ' Si le RadioButton n'est pas coché, afficher la TrackBar et l'activer
-            TrckBarTemps.Show()
-            TrckBarTemps.Enabled = True
-        End If
+        SetLimiteTempsActif(RdBtnTmp.Checked)
+        TrckBarTemps.Visible = Not RdBtnTmp.Checked
+        TrckBarTemps.Enabled = Not RdBtnTmp.Checked
     End Sub
 
     Private Sub TrckBarTemps_Scroll(sender As Object, e As EventArgs) Handles TrckBarTemps.Scroll
@@ -57,6 +51,7 @@ Public Class FormOption
         ' Faire quelque chose avec les valeurs de minutes et de secondes choisies
         TextBoxValeurScrollBar.Text = minutes.ToString() & " minutes " & secondes.ToString() & " secondes"
     End Sub
+
 
     Private Sub FormOption_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ' Configurer les propriétés de la TrackBar pour augmenter la sensibilité

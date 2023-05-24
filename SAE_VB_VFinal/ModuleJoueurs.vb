@@ -1,8 +1,8 @@
 ﻿Imports System.IO
 
 Module ModuleJoueur
-    Private Const NBR_MAX_JOUEUR As Integer = 2
-    Public joueursActuels(NBR_MAX_JOUEUR - 1) As Joueur
+    Private Const Nb_Joueur As Integer = 2
+    Public joueursActuels(Nb_Joueur - 1) As Joueur
     Public joueursHistorique As New List(Of Joueur)()
     Public JoueurQuiGagne As String
     Private cheminFichier As String = "../../HistoriqueJoueurs.txt"
@@ -72,9 +72,6 @@ Module ModuleJoueur
                 joueur.nbrPartiesPremierJoueur = LineInput(num)
                 joueur.nbrPartiesSecondJoueur = LineInput(num)
                 joueur.cumulTemps = LineInput(num)
-
-                ' Vérifier si le joueur existe déjà dans l'historique
-                ' Vérifier si le joueur existe déjà dans l'historique
                 Dim joueurExistant = joueursHistorique.FirstOrDefault(Function(j) j.nom = joueur.nom)
                 If joueurExistant.Equals(New Joueur()) Then
                     ' Ajouter le joueur uniquement s'il n'existe pas déjà
@@ -88,7 +85,7 @@ Module ModuleJoueur
 
     Public Sub MiseAJourJoueurDansHistorique(joueur As Joueur)
         For Each joueurHistorique In joueursHistorique
-            If joueurHistorique.nom = joueur.nom Then
+            If joueurHistorique.nom.Equals(joueur.nom) Then
                 joueurHistorique.score = joueur.score
                 joueurHistorique.cumulTemps = joueur.cumulTemps
                 joueurHistorique.nbrPartiesPremierJoueur = joueur.nbrPartiesPremierJoueur
@@ -97,6 +94,7 @@ Module ModuleJoueur
             End If
         Next
     End Sub
+
 
     Public Sub ResetJoueursActuels()
         Array.Clear(joueursActuels, 0, joueursActuels.Length)
@@ -129,6 +127,8 @@ Module ModuleJoueur
             Next
         End Using
     End Sub
+
+
 
     Public Sub ChargerHistorique()
         If Not File.Exists(cheminFichier) Then

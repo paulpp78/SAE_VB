@@ -1,8 +1,9 @@
-﻿Imports System.Drawing
-Imports System.Windows.Forms
+﻿Imports System.Windows.Forms
+Imports System.Drawing
+
 
 Public Class FormJoueurQuiDevine
-    Private remainingTime As TimeSpan = GetDureeLimiteTemps()
+    Private tempsinitial As TimeSpan = GetDureeLimiteTemps()
     Private tempsRestant As Integer
 
     Private Sub FormJoueurQuiDevine_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -12,30 +13,49 @@ Public Class FormJoueurQuiDevine
         LblPresent.ForeColor = GetCouleurPresent()
         LblPresentEtBienPlace.ForeColor = GetCouleurBienPlace()
         ResetGame()
+
+        If GetLimiteTempsActif() Then
+            Timer1.Stop()
+            LblRemainingTime.Text = "Timer désactivé"
+        End If
     End Sub
+
 
     Private Sub InitializeComponents()
         LblRemainingAttempts.Text = GetLimitePropositions()
-        remainingTime = GetDureeLimiteTemps()
-        LblRemainingTime.Text = remainingTime.ToString("m\:ss")
+
+        If Not GetLimiteTempsActif() Then
+            LblRemainingTime.Text = tempsinitial.ToString("m\:ss")
+            Timer1.Interval = 1000
+            Timer1.Start()
+        Else
+            LblRemainingTime.Text = "Timer désactivé"
+            Timer1.Stop()
+        End If
+
         lstHistorique.Items.Clear()
         lstHistorique.DrawMode = DrawMode.OwnerDrawVariable
         TxtChoix1.Focus()
-        Timer1.Interval = 1000
-        Timer1.Start()
     End Sub
 
+
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
-        remainingTime = remainingTime.Subtract(TimeSpan.FromSeconds(1))
-        tempsRestant = remainingTime.Minutes
-        If remainingTime.TotalSeconds <= 0 Then
-            Timer1.Stop()
-            MessageBox.Show("Désolé, le temps est écoulé." + GetCombinaison() + " Etait la combinaison", "Défaite", MessageBoxButtons.OK, MessageBoxIcon.Information)
-            EndGame(False)
+        If Not GetLimiteTempsActif() Then
+            tempsinitial = tempsinitial.Subtract(TimeSpan.FromSeconds(1))
+            tempsRestant = tempsinitial.Minutes
+            If tempsinitial.TotalSeconds <= 0 Then
+                Timer1.Stop()
+                MessageBox.Show("Désolé, le temps est écoulé. " & GetCombinaison() & " était la combinaison.", "Défaite", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                EndGame(False)
+            Else
+                LblRemainingTime.Text = tempsinitial.ToString("m\:ss")
+            End If
         Else
-            LblRemainingTime.Text = remainingTime.ToString("m\:ss")
+            Timer1.Stop()
+            LblRemainingTime.Text = "Timer désactivé"
         End If
     End Sub
+
 
     Private Function GetReponse(proposition As String) As String
         Dim reponse As String = ""
@@ -61,7 +81,7 @@ Public Class FormJoueurQuiDevine
         remainingAttempts -= 1
 
         If remainingAttempts = 0 Then
-            MessageBox.Show("Désolé, vous avez épuisé toutes vos tentatives." + GetCombinaison() + " Etait la combinaison", "Défaite", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            MessageBox.Show("Désolé, vous avez épuisé toutes vos tentatives. " & GetCombinaison() & " était la combinaison.", "Défaite", MessageBoxButtons.OK, MessageBoxIcon.Information)
             EndGame(False)
         Else
             LblRemainingAttempts.Text = remainingAttempts.ToString()
@@ -77,6 +97,8 @@ Public Class FormJoueurQuiDevine
             Dim proposition As String = lstHistorique.Items(e.Index).ToString()
 
             Dim xPosition As Integer = e.Bounds.Left
+
+
             For i As Integer = 0 To proposition.Length - 1
                 Dim caractere As Char = proposition(i)
                 Dim couleur As Color = GetColorFromResponse(GetReponse(proposition).Chars(i))
@@ -146,6 +168,7 @@ Public Class FormJoueurQuiDevine
     End Sub
 
     Private Sub EndGame(Joueur1APerdu As Boolean)
+        Timer1.Stop()
         Dim joueurGagnant As Joueur
         Dim joueurPerdant As Joueur
 
@@ -169,13 +192,13 @@ Public Class FormJoueurQuiDevine
         MiseAJourJoueurDansHistorique(joueurGagnant)
         MiseAJourJoueurDansHistorique(joueurPerdant)
 
+        SauvegarderHistoriqueDansFichier()
         SetJoueurQuiGagne(joueurGagnant.nom)
 
-        SauvegarderHistoriqueDansFichier()
-        FormPartieTerminee.Show()
-        Me.Hide()
-    End Sub
+        FormPartieTerminee.ShowDialog()
+        Me.Dispose()
 
+    End Sub
 
 
     Private Sub ResetGame()

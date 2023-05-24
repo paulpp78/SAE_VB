@@ -115,7 +115,7 @@ Partial Class FormCommencementPartie
         'BtnQuit
         '
         Me.BtnQuit.BackColor = System.Drawing.Color.Gray
-        Me.BtnQuit.Location = New System.Drawing.Point(420, 32)
+        Me.BtnQuit.Location = New System.Drawing.Point(654, 12)
         Me.BtnQuit.Name = "BtnQuit"
         Me.BtnQuit.Size = New System.Drawing.Size(79, 31)
         Me.BtnQuit.TabIndex = 7
