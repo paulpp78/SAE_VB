@@ -10,7 +10,6 @@ Module OptionsDeJeu
     Private couleurAbsent As Color = Color.Red
     Private couleurPresent As Color = Color.Blue
     Private couleurBienPlace As Color = Color.FromArgb(0, 192, 0)
-    Private cheminFichierOption As String = "./Option.txt"
 
     Public Property LimiteTempsActif1 As Boolean
         Get

@@ -144,11 +144,6 @@ Public Class FormJoueurQuiDevine
     End Sub
 
     Private Sub EndGame(Joueur1APerdu As Boolean)
-        ' Afficher le formulaire de partie terminée avec les nouveaux rôles des joueurs
-        'Dim formPartieTerminee As New FormPartieTerminee()
-        'formPartieTerminee.RemplirLabels(joueurQuiPropose.nom, joueurQuiJoue.nom)
-        'formPartieTerminee.Show()
-
         If Joueur1APerdu Then
             ModuleJoueur.AjouterStats(getDeuxiemeJoueur, tempsRestant)
         Else

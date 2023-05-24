@@ -18,7 +18,6 @@ Public Class FormAccueil
             CmbJoueur2.Text = ""
             InverserNomsJoueurs(CmbJoueur1, CmbJoueur2)
             FormCommencementPartie.Show()
-            Me.Hide() ' Cache le formulaire FormAccueil au lieu de le fermer
 
         Else
             ' Affiche un message d'erreur si les noms des joueurs sont identiques ou non saisis

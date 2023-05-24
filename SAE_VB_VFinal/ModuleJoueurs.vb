@@ -72,20 +72,11 @@ Module ModuleJoueur
     Public Sub AjouterJoueursDansHistorique()
         For Each joueur In joueursActuels
             If Not EstContenuDansHistorique(joueur.nom) Then
-                If Not estPremiereFois Then
                     joueursHistorique.Add(joueur)
-                Else
-                    joueursHistorique.AddRange(joueursActuels)
-                    estPremiereFois = False
                 End If
-            End If
         Next
     End Sub
 
-    Public Sub AjouterStats(joueur As Joueur, temps As Integer)
-        For Each joueurActuel In joueursActuels
-            If joueurActuel.estPremierJoueur = joueur.estPremierJoueur Then
-                joueurActuel.score += 1
 
                 If temps < joueurActuel.meilleurTemps Or joueurActuel.meilleurTemps = 0 Then
                     joueurActuel.meilleurTemps = temps
@@ -96,7 +87,6 @@ Module ModuleJoueur
             End If
         Next
     End Sub
-
 
     Public Function EstContenuDansHistorique(nom As String) As Boolean
         For Each joueur In joueursHistorique
