@@ -43,7 +43,9 @@ Partial Class FormJoueurQuiDevine
         'LblCaractereJouable
         '
         Me.LblCaractereJouable.AutoSize = True
-        Me.LblCaractereJouable.Location = New System.Drawing.Point(639, 359)
+        Me.LblCaractereJouable.BackColor = System.Drawing.Color.Black
+        Me.LblCaractereJouable.ForeColor = System.Drawing.Color.Transparent
+        Me.LblCaractereJouable.Location = New System.Drawing.Point(554, 359)
         Me.LblCaractereJouable.Name = "LblCaractereJouable"
         Me.LblCaractereJouable.Size = New System.Drawing.Size(159, 13)
         Me.LblCaractereJouable.TabIndex = 0
@@ -52,7 +54,9 @@ Partial Class FormJoueurQuiDevine
         'LblRemainingAttempts
         '
         Me.LblRemainingAttempts.AutoSize = True
-        Me.LblRemainingAttempts.Location = New System.Drawing.Point(660, 283)
+        Me.LblRemainingAttempts.BackColor = System.Drawing.Color.Black
+        Me.LblRemainingAttempts.ForeColor = System.Drawing.Color.Transparent
+        Me.LblRemainingAttempts.Location = New System.Drawing.Point(575, 283)
         Me.LblRemainingAttempts.Name = "LblRemainingAttempts"
         Me.LblRemainingAttempts.Size = New System.Drawing.Size(112, 13)
         Me.LblRemainingAttempts.TabIndex = 1
@@ -61,7 +65,9 @@ Partial Class FormJoueurQuiDevine
         'LblRemainingTime
         '
         Me.LblRemainingTime.AutoSize = True
-        Me.LblRemainingTime.Location = New System.Drawing.Point(674, 323)
+        Me.LblRemainingTime.BackColor = System.Drawing.Color.Black
+        Me.LblRemainingTime.ForeColor = System.Drawing.Color.Transparent
+        Me.LblRemainingTime.Location = New System.Drawing.Point(589, 323)
         Me.LblRemainingTime.Name = "LblRemainingTime"
         Me.LblRemainingTime.Size = New System.Drawing.Size(94, 13)
         Me.LblRemainingTime.TabIndex = 2
@@ -171,6 +177,7 @@ Partial Class FormJoueurQuiDevine
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.BackColor = System.Drawing.SystemColors.ActiveCaptionText
         Me.ClientSize = New System.Drawing.Size(800, 450)
         Me.Controls.Add(Me.BtnQuit)
         Me.Controls.Add(Me.LblPresentEtBienPlace)

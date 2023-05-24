@@ -13,7 +13,7 @@ Module ModuleOptionsDeJeu
 
     ' Méthodes pour obtenir et modifier les options
 
-    Public Sub SetAllOptions(ByVal limiteTemps As Boolean, ByVal caracteres As String, ByVal limiteProp As Integer, ByVal cheminSauvegarde As String, ByVal couleurAbs As Color, ByVal couleurPres As Color, ByVal couleurBienPl As Color)
+    Public Sub SetAllOptions(ByVal limiteTemps As Boolean, ByVal caracteres As String, ByVal limiteProp As Integer, ByVal cheminSauvegarde As String, ByVal couleurAbs As Color, ByVal couleurPres As Color, ByVal couleurBienPl As Color, DurelimTmp As TimeSpan)
         limiteTempsActif = limiteTemps
         caracteresUtilisables = caracteres
         limitePropositions = limiteProp
@@ -21,6 +21,7 @@ Module ModuleOptionsDeJeu
         couleurAbsent = couleurAbs
         couleurPresent = couleurPres
         couleurBienPlace = couleurBienPl
+        DureeLimiteTemps = DurelimTmp
     End Sub
 
 

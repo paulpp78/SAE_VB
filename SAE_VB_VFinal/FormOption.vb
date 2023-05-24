@@ -30,7 +30,7 @@ Public Class FormOption
         End If
 
         ' Enregistrer les options dans le module ModuleOptionsDeJeu
-        ModuleOptionsDeJeu.SetAllOptions(RdBtnTmp.Checked, TxtCaracteres.Text, NumUpDownNbProposition.Value, TxtSelectedFile.Text, BtnCouleurAbsent.BackColor, BtnCouleurPresent.BackColor, BtnCouleurBienPlace.BackColor)
+        ModuleOptionsDeJeu.SetAllOptions(RdBtnTmp.Checked, TxtCaracteres.Text, NumUpDownNbProposition.Value, TxtSelectedFile.Text, BtnCouleurAbsent.BackColor, BtnCouleurPresent.BackColor, BtnCouleurBienPlace.BackColor, TimeSpan.FromSeconds(TrckBarTemps.Value))
 
         MessageBox.Show("Les options ont été enregistrées avec succès.", "Enregistrement", MessageBoxButtons.OK, MessageBoxIcon.Information)
         FormAccueil.Show()
